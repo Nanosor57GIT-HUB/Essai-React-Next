@@ -1,0 +1,87 @@
+{
+    "pages": [
+      {
+        "title": "Page de contenu du CV.",
+        "path": "/cv",
+        "content": "Retrouvez les éléments importants dans la construction d'un cv."
+      },
+       {
+        "title": "Page de contact.",
+        "path": "/contact",
+        "content": "Installation d'un formulaire de contact."
+      },
+      {
+        "title": "Page d'incrémentation.",
+        "path": "/incrementation",
+        "content": "Incrémentation +1 (like) avec remerciement."
+      },
+      {
+        "title": "Test d'une API avec axios.",
+        "path": "/testApi",
+        "content": "Mise en place et appelle d'une Api avec Axios"
+      },
+      {
+        "title": "Compteur play/pause/reprendre.",
+        "path": "/compteur",
+        "content": "Mise en place d'un compteur sans re-render"
+      },
+      {
+        "title": "Exemple avec des nombres et des multiplicateurs",
+        "path": "/usememo",
+        "content": "Totaliser des nombres et des multiplicateurs."
+      },
+      {
+        "title": "Mise en mémoire",
+        "path": "/usecallback",
+        "content": "Addition de chiffres"
+      },
+      {
+        "title": "Barre de recherche multidimentionnelle.",
+        "path": "/searchbar",
+        "content": "Mise en place d'une barre de recherche au travers du projet, les pages, des titres de textes avec possibilités de faire un display de toutes les recherches croisées."
+      }
+    ],
+    "titles": [
+      {
+        "id": "title1",
+        "title": "Résumé professionnel",
+        "path": "/cv#title1"
+      },
+      {
+        "id": "title2",
+        "title": "Compétences Techniques",
+        "path": "/cv#title2"
+      },
+      {
+        "id": "title3",
+        "title": "Expérience Professionnelle",
+        "path": "/cv#title3"
+      },
+      {
+        "id": "title4",
+        "title": "Projets Personnels",
+        "path": "/cv#title4"
+      },
+      {
+        "id": "title5",
+        "title": "Titre 5",
+        "path": "/page-1#title1"
+      },
+      {
+        "id": "title6",
+        "title": "Formations",
+        "path": "/cv#title6"
+      },
+      {
+        "id": "title7",
+        "title": "Certifications",
+        "path": "/cv#title7"
+      },
+      {
+        "id": "title8",
+        "title": "Langues",
+        "path": "/cv#title8"
+      }
+    ]
+  }
+  

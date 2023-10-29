@@ -1,0 +1,15 @@
+{
+  "page": [
+    { "title": "Faire un switch de couleur et installation d'un player", "path": "/" },
+    { "title": "Vous êtes sur la page CV", "path": "cv" },
+    { "title": "Installation d'un formulaire de contact", "path": "contact" },
+    { "title": "Incrémentation +1 (like) avec remerciement", "path": "incrementation" },
+    { "title": "Test de mise en place d'API avec axios", "path": "testApi" },
+    { "title": "Compteur play/pause/reprendre", "path": "compteur" },
+    { "title": "Totaliser des nombres et des multiplicateurs", "path": "usememo"
+    }
+  ]
+}
+
+
+
