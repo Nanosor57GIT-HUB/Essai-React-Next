@@ -35,7 +35,7 @@ function ContactForm() {
           placeholder='Mettre votre nom et prénom'
           value={formData.name}
           onChange={handleChange}
-          autoComplete="on"
+          autoComplete="name"
           required
         />
       </div>
@@ -49,7 +49,7 @@ function ContactForm() {
           placeholder='Mettre votre adresse Email'
           value={formData.email}
           onChange={handleChange}
-          autoComplete="on"
+          autoComplete="email"
           required
         />
       </div>

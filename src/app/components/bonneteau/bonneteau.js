@@ -2,20 +2,20 @@
 
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState } from "react";
+import { Montserratfont } from "@/app/style.font";
 import Coin from "./coinWin";
 import CoinsExtraWin from "./coinExtraWin";
 import Image from "next/image";
 import FormBonneteau from "./formbonneteau";
-
 
 const Bonneteau = () => {
   const { theme } = useTheme();
 
   // Les données des gobelets.
   const gobelets = [
-    { id: 1, position: "Perdu1", gobeletId: 1 },
-    { id: 2, position: "Gagné", gobeletId: 2 },
-    { id: 3, position: "Perdu2", gobeletId: 3 },
+    { id: 1, imageSrc: "/images/gobelet-argenté.png", position: "Perdu1", gobeletId: 1 },
+    { id: 2, imageSrc: "/images/gobelet-argenté.png", position: "Gagné", gobeletId: 2 },
+    { id: 3, imageSrc: "/images/gobelet-argenté.png", position: "Perdu2", gobeletId: 3 },
   ];
 
   // Les données des boutons.
@@ -47,11 +47,13 @@ const Bonneteau = () => {
   // État pour la gestion sur la position finale des gobelets avant le mélange.
   const [gobeletFinale, setGobeletFinale] = useState(false);
   // État d'initialisation du jeu au lancement du jeu.
-  const [firstClick, setFirstClick] = useState(false);
+  const [initGame, setInitGame] = useState(false);
   // État pour suivre si le jeu est en cours.
   const [isPlaying, setIsPlaying] = useState(false);
   // État pour suivre l'index du bouton gagnant.
   const [winnerId, setWinnerId] = useState(null);
+  // État pour suivre le gobelet cliqué.
+  const [gobeletClicked, setGobeletClicked] = useState(false);
   // État pour suivre le nombre de victoires.
   const [winCount, setWinCount] = useState(getWinCount());
   // État pour déterminer si c'est "coin" ou "extrawin".
@@ -81,6 +83,7 @@ const Bonneteau = () => {
       // Interval entre chaque itération pour le mélange.
       const animationInterval = setInterval(() => {
         const newOrder = shuffleArray(arrayOrder);
+
         setArrayOrder(newOrder);
       }, 200);
       return () => {
@@ -90,61 +93,68 @@ const Bonneteau = () => {
     }
   }, [isPlaying, arrayOrder, winnerId]);
 
-  // // Fonction pour gérer le clic sur un gobelet
-  // function handleGobeletClick(index, gobeletId) {
-  //     if (gobeletId === winnerId) {
-  //       checkResult(gobeletId)
-  //       // Le joueur a gagné ! Mettez en place la logique pour la victoire.
-  //       console.log("gagnant");
-  //     } else {
-  //       // Le joueur a perdu. Mettez en place la logique pour la défaite.
-  //       console.log("perdant");
-  //     }
-  //   }
+  // Mise à jour de la fonction handleGobeletClick (gobelet cliqué).
+  function handleGobeletClick(index, gobeletId) {
+    if (!gobeletClicked) {
+      setGobeletClicked(true);
+      
+      const updatedGobeletClicked = [gobeletClicked];
+      updatedGobeletClicked[index] = true;
+      setGobeletClicked(updatedGobeletClicked);
+    
+      if (gobeletId === winnerId) { 
+        // Logique de victoire.
+        checkResult(gobeletId); 
+      } else {
+        // Logique de défaite.
+        setInitGame(true);
+      }
+    }
+  }
 
   // Fonction pour démarrer un nouveau jeu.
   function startGame() {
     if (!isPlaying) {
-      setIsButtonDisabled(true); // Désactive le bouton "Play Game".
-      setPositionGobelets(true);
-      setGobeletFinale(false);
+      // setGobeletClicked(false)
+      setIsButtonDisabled(true);  
+        setPositionGobelets(true);
+      // setGobeletFinale(false);
       setWinnerId(2);
-      setFirstClick(true);
-      // Délai avant de déclencher le mélange des boutons.
+      setInitGame(true);
+
+      // Délai avant de déclencher le mélange.
       setTimeout(() => {
-        // Mélangez le tableau en utilisant l'algorithme de Fisher-Yates.
-        const shuffledOrder = shuffleArray(arrayOrder, 5);
-        setArrayOrder(shuffledOrder); // Mettez à jour le tableau arrayOrder.
         setPositionGobelets(false);
         setGobeletFinale(true);
         setIsPlaying(true);
-        // Après un certain délai, terminez le jeu
+
+        // Après un certain délai, durée du mélange.
         setTimeout(() => {
           setIsPlaying(false);
         }, 3000); // Durée de 3 secondes pour le mélange.
-      }, 2000); // 2 secondes de délai avant le mélange des boutons.
+      }, 2000); // 2 secondes de délai avant le mélange.
     }
   }
 
   // Fonction pour démarrer un nouveau jeu.
   function nextRound() {
     if (!isPlaying) {
+      setGobeletClicked(false);
       setIsButtonDisabled(true); // Désactive le bouton "Play Game".
-      setWinnerId(2);
-    //  setFirstClick(true); 
-     setGobeletFinale(true);
-      // Délai avant de déclencher le mélange des boutons.
+      //  setWinnerId(2);
+      //  setGobeletFinale(true);  
+     
+      // Délai avant de déclencher le mélange.
       setTimeout(() => {
-        // Mélangez le tableau en utilisant l'algorithme de Fisher-Yates.
-        const shuffledOrder = shuffleArray(arrayOrder, 5);
-        setArrayOrder(shuffledOrder); // Mettez à jour le tableau arrayOrder.
-      
+        // setPositionGobelets(false);
+        // setGobeletFinale(true);
         setIsPlaying(true);
-        // Après un certain délai, terminez le jeu
+
+        // Après un certain délai, durée du mélange.
         setTimeout(() => {
           setIsPlaying(false);
         }, 3000); // Durée de 3 secondes pour le mélange.
-      }, 500); // 1/2 secondes de délai avant le mélange des boutons.
+      }, 500); // 1/2 secondes de délai avant le mélange.
     }
   }
 
@@ -202,7 +212,7 @@ const Bonneteau = () => {
 
   // Fonction pour vérifier le résultat lorsque le joueur clique sur un gobelet.
   function checkResult(index) {
-    if (firstClick) {     
+    if (initGame) {
       const matchingItem = gameItems.find((item) => item.buttonId === index);
       if (matchingItem && matchingItem.gobeletId === winnerId) {
         setShowModal(true);
@@ -221,9 +231,10 @@ const Bonneteau = () => {
         sessionStorage.setItem("bonneteauWinCount", newWinCount.toString());
 
         setIsPlaying(false);
-      
+
         setIsButtonDisabled(true); // désactive la possibilité de rejouer si gagné
-               createFallingCoins();
+        
+        createFallingCoins();
       } else {
         return;
       }
@@ -250,6 +261,7 @@ const Bonneteau = () => {
     <div className="blockbonneteau">
       <div className="emptybonneteau"></div>
       <div className="containerbonneteau">
+      <h2 className={`titlegame ${Montserratfont.className}`}>Three-Shell Game</h2> 
         <p className="alertevictory" style={{ color: theme.color2 }}>
           {victoryMessage}
         </p>
@@ -260,19 +272,23 @@ const Bonneteau = () => {
                 key={gobelets[index].id}
                 className={`gobelet gobelet-${gobelets[index].position} ${
                   positionGobelets ? `gobelet${idx + 1}-animated` : ""
-                }  ${gobeletFinale ? `gobelet${idx + 1}` : ""} `}
-                onClick={() => {
-                  // A mettre ici une suppression de gobelet${idx + 1}-animated
-                  checkResult(gobelets[index].id);
-                }}
+                }  ${gobeletFinale ? `gobelet${idx + 1}-x` : ""}
+                ${gobeletClicked[index] ? `gobelet-clicked${idx + 1}` : ''}`}
+            
+               onClick={() => { 
+                  handleGobeletClick(index, gobelets[index].gobeletId); 
+              }}
               >
+                {gobelets[index].imageSrc && (
                 <Image
-                  src={`/images/gobelet-argenté.png`}
+                    src={gobelets[index].imageSrc}
+                  // src={`/images/gobelet-argenté.png`}
                   className={`gobelet gobelet-${gobelets[index].position}`}
                   alt={`gobelet-${gobelets[index].id}`}
                   width={1200}
                   height={1500}
                 />
+                )}
                 <span className="testgobelet">{gobelets[index].position}</span>
               </div>
             ))}
@@ -308,16 +324,18 @@ const Bonneteau = () => {
           <button
             className="btngame2"
             onClick={nextRound}
+            disabled={isButtonDisabled}
             style={{ opacity: isButtonDisabled ? 0.2 : 1 }}
           >
             {isPlaying ? "Blend..." : "Play Game.."}
           </button>
+
           {!isPlaying && !localStorage.getItem("bonneteauResult") && (
             <button
               onClick={startGame}
               disabled={isButtonDisabled}
               className="btngame"
-              style={{ display: firstClick ? "none" : "block" }}
+              style={{ display: initGame ? "none" : "block" }}
             >
               {isPlaying ? "Blend..." : "Play Game"}
             </button>

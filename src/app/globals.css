@@ -218,10 +218,13 @@ body {
 }
 
 .titlegame {
-  position: absolute;
+  /* position: absolute;
   left: 50%;
-  top: 5px;
-  transform: translate(-50%, 0);
+  top: 50px; */
+  /* transform: translate(-50%, 0); */
+  text-align: center;
+  width: 100%;
+  height: auto;
   font-size: 36px;
   font-family: "Cabin", sans-serif;
   z-index: 10;
@@ -268,8 +271,8 @@ body {
   align-items: center;
   width: 486px;
   height: auto;
-  border: 2px solid #333333;
-  border-radius: 10px;
+  /* border: 2px solid #333333;
+  border-radius: 10px; */
   margin: 0 2px;
   z-index: 200;
 }
@@ -384,15 +387,27 @@ body {
 
 
 
-.gobelet1  {
+.gobelet1-x  {
   transform: translateX(123px) translateY(115px) rotate(30deg);
 }
-.gobelet2  {
+.gobelet2-x  {
   transform: translateX(225px) translateY(115px) rotate(30deg);
 }
-.gobelet3 {
+.gobelet3-x {
   transform: translateX(328px) translateY(115px) rotate(30deg);
 }
+
+.gobelet-clicked1 {
+  transform: translateX(63px) translateY(0px) rotate(0deg);
+}
+.gobelet-clicked2 {
+  transform: translateX(225px) translateY(25px) rotate(30deg);
+}
+.gobelet-clicked3 {
+  transform: translateX(378px) translateY(25px) rotate(60deg);
+}
+
+
 
 
 
@@ -469,7 +484,7 @@ body {
 .btngame2 {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 50%; /*passer à 10% responsive 1250* et repasser 50% à 858*/
   width: 100px;
   height: 30px;
   transform: translate(-50%, 50%);
@@ -572,7 +587,7 @@ body {
 }
 @media screen and (max-width: 858px) {
   .blockdescriptiongame {
-    margin-top: 30px;
+    margin-top: 55px;
   }
 }
 
@@ -717,7 +732,7 @@ body {
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
-  width: 650px;
+  width: 640px;
   height: 160px;
 }
 
