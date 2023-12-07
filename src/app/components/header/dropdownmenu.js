@@ -1,5 +1,5 @@
 // DropdownMenu.js
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "@/app/context/themecontext";
 import { useHeader } from "@/app/context/headercontext";
@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 const DropdownMenu = () => {
     const { theme } = useTheme();
-    const { isMenuOpen, closeMenuBurger, closeDropdownMenu, toggleMenu, menuContainerRef, dropdownMenuRef } = useHeader()
+    const { isMenuOpen, closeMenuBurger, closeDropdownMenu, toggleMenu, dropdownMenuRef } = useHeader()
     
     const currentRoute = usePathname();
 
@@ -47,6 +47,7 @@ const DropdownMenu = () => {
             <li className="limenu">
               <Link
                 href="/page/usememo"
+                as="/page/usememo"
                 className="link"
                 style={{
                   color: theme.color4,
@@ -69,6 +70,7 @@ const DropdownMenu = () => {
             <li className="limenu">
               <Link
                 href="/page/usecallback"
+                as="/page/usecallback"
                 className="link"
                 style={{
                   color: theme.color4,
@@ -103,7 +105,7 @@ const DropdownMenu = () => {
     return (
       <div className="menu-container" ref={dropdownMenuRef} >
         <div className={`menu-toggle ${menuToggleClass}`}  onClick={toggleMenu} style={{ color: theme.color4 }}>
-          Menu
+          Games
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 320 512"

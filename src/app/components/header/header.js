@@ -6,12 +6,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import DropdownMenu from "./dropdownmenu";
-import { useEffect } from "react";
-
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
-  const { isMenuOpen, setIsMenuOpen, toggleBurger, burgerActive, isNavOpen, closeDropdownMenu, closeMenuBurger, menuContainerRef } = useHeader();
+  const { toggleBurger, burgerActive, isNavOpen, closeMenuBurger, menuContainerRef } = useHeader();
 
  
 
@@ -23,6 +21,7 @@ export default function Header() {
     <div className="header">
       <Image
         priority={true}
+        as="image"
         src="/images/logo/logoPortfolio(360x180).webp"
         alt="logo_logoPortfolio"
         className="logoPortfolio"
@@ -44,6 +43,7 @@ export default function Header() {
       >
         <Link
           href="/"
+          as="/"
           passHref
           className="link"
           style={{
@@ -55,6 +55,7 @@ export default function Header() {
         </Link>
         <Link
           href="/page/cv"
+          as="/page/cv"
           passHref
           className="link"
           style={{
@@ -66,6 +67,7 @@ export default function Header() {
         </Link>
         <Link
           href="/page/incrementation"
+          as="/page/incrementation"
           passHref
           className="link"
           style={{
@@ -80,7 +82,8 @@ export default function Header() {
           </div>
         </Link>
         <Link
-          href="/page/testApi"
+          href="/page/testapi"
+          as="/page/testapi"
           passHref
           className="link"
           style={{
@@ -88,13 +91,14 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/testApi" ? "active" : ""}>
+          <div className={currentRoute === "/page/testapi" ? "active" : ""}>
             Api
           </div>
         </Link>
 
         <Link
           href="/page/compteur"
+          as="/page/compteur"
           passHref
           className="link"
           style={{
@@ -106,13 +110,10 @@ export default function Header() {
             Compteur
           </div>
         </Link>
-        <DropdownMenu
-       //   isMenuOpen={isMenuOpen}
-        //  closeMenu={closeDropdownMenu}
-         // toggleMenu={() => setIsMenuOpen((prevState) => !prevState)}
-        />
+        <DropdownMenu/>
         <Link
           href="/page/searchbar"
+          as="/page/searchbar"
           passHref
           className="link"
           style={{
@@ -126,6 +127,7 @@ export default function Header() {
         </Link>
         <Link
           href="/page/contact"
+          as="/page/contact"
           passHref
           className="link"
           style={{

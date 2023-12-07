@@ -19,7 +19,7 @@ const App = () => {
         background: theme.background,
       }}
     >
-      <Image priority={true} src="/images/robots/robot6.webp" alt="robot6" className="robot6" width={600} height={600} />
+      <Image priority={true} as="image" src="/images/robots/robot6.webp" alt="robot6" className="robot6" width={600} height={600} />
       <h1 style={{
           color: theme.color,
         }}>Exemple avec des nombres et des multiplicateurs</h1>

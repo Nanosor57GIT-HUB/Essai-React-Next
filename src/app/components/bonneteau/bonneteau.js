@@ -13,24 +13,41 @@ const Bonneteau = () => {
 
   // Les données des gobelets.
   const gobelets = [
-    { id: 1, imageSrc: "/images/gobelet-argenté.png", position: "Perdu1", gobeletId: 1 },
-    { id: 2, imageSrc: "/images/gobelet-argenté.png", position: "Gagné", gobeletId: 2 },
-    { id: 3, imageSrc: "/images/gobelet-argenté.png", position: "Perdu2", gobeletId: 3 },
+    {
+      id: 1,
+      imageSrc: "/images/gobelet-argenté.png",
+      position: "Perdu1",
+      gobeletId: 1,
+    },
+    {
+      id: 2,
+      imageSrc: "/images/gobelet-argenté.png",
+      position: "Gagné",
+      gobeletId: 2,
+    },
+    {
+      id: 3,
+      imageSrc: "/images/gobelet-argenté.png",
+      position: "Perdu2",
+      gobeletId: 3,
+    },
   ];
 
   // Les données des boutons.
   const buttonsData = [
     {
       id: 1,
+      position: "Perdu1",
+      imageSrc: "",
       buttonId: 1,
     },
     {
       id: 2,
-      imageSrc: "/images/bg-buttons/goldenbackground.webp",
-      text: "Gagné",
+      position: "Gagné",
+      imageSrc: "/images/Sphere2.png",
       buttonId: 2,
     },
-    { id: 3, buttonId: 3 },
+    { id: 3, position: "Perdu2", imageSrc: "", buttonId: 3 },
   ];
 
   // Correspondance des gobelets et des boutons.
@@ -83,9 +100,10 @@ const Bonneteau = () => {
       // Interval entre chaque itération pour le mélange.
       const animationInterval = setInterval(() => {
         const newOrder = shuffleArray(arrayOrder);
-
+        console.log(arrayOrder);
         setArrayOrder(newOrder);
-      }, 200);
+        console.log(newOrder);
+      }, 1000);
       return () => {
         clearInterval(animationInterval);
         setIsButtonDisabled(false); // Réactivation du bouton après le mélange.
@@ -95,19 +113,20 @@ const Bonneteau = () => {
 
   // Mise à jour de la fonction handleGobeletClick (gobelet cliqué).
   function handleGobeletClick(index, gobeletId) {
-    if (!gobeletClicked) {
-      setGobeletClicked(true);
-      
-      const updatedGobeletClicked = [gobeletClicked];
-      updatedGobeletClicked[index] = true;
-      setGobeletClicked(updatedGobeletClicked);
-    
-      if (gobeletId === winnerId) { 
-        // Logique de victoire.
-        checkResult(gobeletId); 
-      } else {
-        // Logique de défaite.
-        setInitGame(true);
+    if (initGame) {
+      if (!isPlaying) {
+        const updatedGobeletClicked = [gobeletClicked];
+        updatedGobeletClicked[index] = true;
+        setGobeletClicked(updatedGobeletClicked);
+
+        if (gobeletId === winnerId) {
+          // Logique de victoire.
+          checkResult(gobeletId);
+        } else {
+          // Logique de défaite.
+          setInitGame(true);
+          console.log(initGame);
+        }
       }
     }
   }
@@ -115,10 +134,9 @@ const Bonneteau = () => {
   // Fonction pour démarrer un nouveau jeu.
   function startGame() {
     if (!isPlaying) {
-      // setGobeletClicked(false)
-      setIsButtonDisabled(true);  
-        setPositionGobelets(true);
-      // setGobeletFinale(false);
+       setGobeletClicked(false)
+      setIsButtonDisabled(true);
+      setPositionGobelets(true);
       setWinnerId(2);
       setInitGame(true);
 
@@ -127,11 +145,12 @@ const Bonneteau = () => {
         setPositionGobelets(false);
         setGobeletFinale(true);
         setIsPlaying(true);
+        setGobeletClicked(false)
 
         // Après un certain délai, durée du mélange.
-        setTimeout(() => {
+        setTimeout(() => {     
           setIsPlaying(false);
-        }, 3000); // Durée de 3 secondes pour le mélange.
+        }, 10000); // Durée de 3 secondes pour le mélange.
       }, 2000); // 2 secondes de délai avant le mélange.
     }
   }
@@ -139,21 +158,17 @@ const Bonneteau = () => {
   // Fonction pour démarrer un nouveau jeu.
   function nextRound() {
     if (!isPlaying) {
-      setGobeletClicked(false);
       setIsButtonDisabled(true); // Désactive le bouton "Play Game".
-      //  setWinnerId(2);
-      //  setGobeletFinale(true);  
-     
+
       // Délai avant de déclencher le mélange.
       setTimeout(() => {
-        // setPositionGobelets(false);
-        // setGobeletFinale(true);
         setIsPlaying(true);
+        setGobeletClicked(false)
 
         // Après un certain délai, durée du mélange.
-        setTimeout(() => {
+        setTimeout(() => {        
           setIsPlaying(false);
-        }, 3000); // Durée de 3 secondes pour le mélange.
+        }, 10000); // Durée de 3 secondes pour le mélange.
       }, 500); // 1/2 secondes de délai avant le mélange.
     }
   }
@@ -233,7 +248,7 @@ const Bonneteau = () => {
         setIsPlaying(false);
 
         setIsButtonDisabled(true); // désactive la possibilité de rejouer si gagné
-        
+
         createFallingCoins();
       } else {
         return;
@@ -257,11 +272,13 @@ const Bonneteau = () => {
     setShowModal(false);
   };
 
-  return (
+  return ( <div className="wrapper-bonneteau">
     <div className="blockbonneteau">
       <div className="emptybonneteau"></div>
       <div className="containerbonneteau">
-      <h2 className={`titlegame ${Montserratfont.className}`}>Three-Shell Game</h2> 
+        <h2 className={`titlegamebonneteau ${Montserratfont.className}`}>
+          Three-Shell Game 333
+        </h2>
         <p className="alertevictory" style={{ color: theme.color2 }}>
           {victoryMessage}
         </p>
@@ -270,24 +287,27 @@ const Bonneteau = () => {
             {arrayOrder.map((index, idx) => (
               <div
                 key={gobelets[index].id}
-                className={`gobelet gobelet-${gobelets[index].position} ${
-                  positionGobelets ? `gobelet${idx + 1}-animated` : ""
-                }  ${gobeletFinale ? `gobelet${idx + 1}-x` : ""}
-                ${gobeletClicked[index] ? `gobelet-clicked${idx + 1}` : ''}`}
-            
-               onClick={() => { 
-                  handleGobeletClick(index, gobelets[index].gobeletId); 
-              }}
+                className={`gobelets gobelet-${gobelets[index].position}
+                ${
+                  positionGobelets ? `gobelets${index + 1}-animated` : ""
+                }            
+                 ${gobeletFinale ? ` gobelets${idx + 1 }-positionFinale` : ""} 
+                ${gobeletClicked[index] ? `gobelet-clicked${idx + 1}` : ""}`}
+                onClick={() => {
+                  handleGobeletClick(index, gobelets[index].gobeletId);
+                }}
               >
                 {gobelets[index].imageSrc && (
-                <Image
+                  <Image
+                    priority={true}
+                    as="image"
                     src={gobelets[index].imageSrc}
-                  // src={`/images/gobelet-argenté.png`}
-                  className={`gobelet gobelet-${gobelets[index].position}`}
-                  alt={`gobelet-${gobelets[index].id}`}
-                  width={1200}
-                  height={1500}
-                />
+                    // src={`/images/gobelet-argenté.png`}
+                    className={`gobelets gobelet-${gobelets[index].position}`}
+                    alt={`gobelet-${gobelets[index].id}`}
+                    width={1200}
+                    height={1500}
+                  />
                 )}
                 <span className="testgobelet">{gobelets[index].position}</span>
               </div>
@@ -300,21 +320,13 @@ const Bonneteau = () => {
                 {buttonsData[index].imageSrc && (
                   <Image
                     src={buttonsData[index].imageSrc}
-                    alt={buttonsData[index].text}
-                    width={180}
-                    height={180}
+                    as="image"
+                    alt="Boule gagnante"
+                    width={1200}
+                    height={1500}
                     className="winner-button-img"
                   />
                 )}
-                <span
-                  className="winner-button-text"
-                  style={{
-                    color: theme.color3,
-                    textShadow: theme.textShadow,
-                  }}
-                >
-                  {buttonsData[index].text}
-                </span>
               </button>
             ))}
           </div>
@@ -376,13 +388,14 @@ const Bonneteau = () => {
         <h4>T&#39;es en veine, joue et tente de gagner un cadeau.</h4>
         <p>
           - Click sur le bouton &quot;Play game&quot;. Après le mélange, trouve
-          la pièce en cliquant sur un gobelet. Mais ce n&#39;est pas tout. Tu as
-          3 chances de gagner un lot et 1/3 de gagner le super gros lot. Gagne
+          la boule en cliquant sur un gobelet.  Tu as
+          3 chances de gagner un lot. Mais ce n&#39;est pas tout. 1 gagnant sur trois aura la change d&#39;avoir un gros lot. Joue, Gagne
           et renvoie moi le formulaire. Après vérification, tu recevras un
           courriel indiquant les modalités de ton cadeau.
         </p>
       </div>
       <FormBonneteau show={showModal} onClose={closeModal} />
+    </div>
     </div>
   );
 };

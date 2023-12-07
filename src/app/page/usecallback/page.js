@@ -32,7 +32,7 @@ const SumCalculator = ({ numbers }) => {
     <div className="blocknumberusecallback" style={{
       background: theme.background2,
     }}>       
-    <Image priority={true} src="/images/robots/robot7.webp" alt="robot7" className="robot7" width={487} height={682} />
+    <Image priority={true} as="image" src="/images/robots/robot7.webp" alt="robot7" className="robot7" width={487} height={682} />
       <div
         className="usecallbacknumber"
         

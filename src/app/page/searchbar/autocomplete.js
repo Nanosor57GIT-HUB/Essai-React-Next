@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 
-const Autocomplete = ({ suggestions, onSelect, userInput, onChange, onKeyDown, activeSuggestion, filteredSuggestions, onClick }) => {
+const Autocomplete = ({ suggestion, onSelect, userInput, onChange, onKeyDown, activeSuggestion, filteredSuggestions, onClick }) => {
   return (
     <div className="autocomplete">
       <div className="searchbar" >

@@ -61,7 +61,7 @@ const SearchPage = () => {
           </ol>
         )}
         <div className='containerrobot8'>
-        <Image priority={true} src="/images/robots/robot8.webp" alt="robot8" className="robot8" width={670} height={600} />
+        <Image priority={true} as="image" src="/images/robots/robot8.webp" alt="robot8" className="robot8" width={670} height={600} />
       </div>
       </div>
     </main>

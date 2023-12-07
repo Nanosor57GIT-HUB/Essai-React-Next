@@ -67,6 +67,7 @@ const Like = () => {
         </h1>
         <Image
           priority={true}
+          as="image"
           src="/images/robots/robot3.webp"
           alt="robot3"
           className="robot3"

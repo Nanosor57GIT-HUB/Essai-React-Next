@@ -64,7 +64,8 @@ const Coin = ({ index, rowIndex }) => {
   return (
     <div  className="coin" style={{ ...coinStyle, ...animationStyle }}>
       <Image
-     // priority={true}
+      priority={true}
+      as="image"
         src="/images/coin/Dollar-Gold.png" 
         alt="Coin"
         className="coin"

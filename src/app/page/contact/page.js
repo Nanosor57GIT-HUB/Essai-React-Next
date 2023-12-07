@@ -24,6 +24,7 @@ const Contact = () => {
           {/* <Image priority={true} src="/images/giphy.mov" alt="bg-tablette" className= "bg-tablette" width={480} height={480} /> */}
           <Image
             priority={true}
+            as="image"
             src="/images/tablet.webp"
             alt="tabletteContact"
             className="tablettecontact"
@@ -41,6 +42,7 @@ const Contact = () => {
           </h1>
           <Image
             priority={true}
+            as="image"
             src="/images/robots/robot9.webp"
             alt="robot9"
             className="robot9"

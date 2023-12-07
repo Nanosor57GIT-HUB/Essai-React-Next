@@ -1,5 +1,4 @@
 "use client"
-import { useRoot } from "../context/rootcontext";
 
 import { useTheme } from "../context/themecontext";
 

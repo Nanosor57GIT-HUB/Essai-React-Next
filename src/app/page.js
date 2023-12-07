@@ -4,6 +4,8 @@ import { useTheme } from "./context/themecontext";
 import Image from "next/image";
 import Audioplayer from "./components/audioplayer";
 import Bonneteau from "./components/bonneteau/bonneteau";
+//import LotoSystem from "./components/lotoSystem/lotosystem";
+import LotoSystem from "./components/lotoSystem/lotosystem";
 
 
 // https://www.youtube.com/watch?v=843nec-IvW0    (nextjs full course 7h by dave gray)
@@ -26,9 +28,10 @@ export default function Home() {
       
      <Bonneteau />
      
-     <Image priority={true} src="/images/Dollar.webp" alt="dollar"  width={407} height={399} className="logo-dollar"
+     <Image priority={true} as="image" src="/images/Dollar.webp" alt="dollar"  width={407} height={399} className="logo-dollar"
        />
-       <Image priority={true} src="/images/Game-Gold-Coin.webp" alt="coin-gold" width={800} height={377} className="coinsgold" />
+       <Image priority={true} as="image" src="/images/Game-Gold-Coin.webp" alt="coin-gold" width={800} height={377} className="coinsgold" />
+       <LotoSystem />
         <Audioplayer /> 
       </div>
     </main>

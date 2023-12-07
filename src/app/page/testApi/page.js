@@ -54,6 +54,7 @@ const TestApi = () => {
         <div className="robot4container" style={{ display: loading || error ? 'none' : 'block' }}>
           <Image
             priority={true}
+            as="image"
             src="/images/robots/robot4.webp" 
             alt="robot4"
             className="robot4"

@@ -38,7 +38,7 @@ const FormBonneteau = ({ show, onClose }) => {
           <div className='formcontainer'>
           {isSubmitted ? (
             <div className="confirmationwinner">
-            <p className='messageconfirmation'>Merci {formData.firstName} {formData.lastName} pour votre participation. Vous serez contacter dans un délai raisonnable à cette adresse {formData.email} .</p>
+            <p className='messageconfirmation'>Merci {formData.firstName} {formData.lastName} pour votre participation. Vous serez contacter dans un délai raisonnable à l&#39;adresse {formData.email} .</p>
             <button className='btncloseconfirmationwinner' onClick={onClose}>Fermer</button>
           </div>
         ) : (

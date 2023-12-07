@@ -47,7 +47,8 @@ const CoinsExtraWin = ({ index, rowIndex }) => {
     return (
       <div className="coin" style={{ ...coinsStyle, ...animationStyle }}>
         <Image
-      //  priority={true}
+        priority={true}
+        as="image"
           src={coin.imageSrc} // Utilisez l'image correspondante à la pièce
           alt={`Coin ${coin.id}`}
           className="coin"

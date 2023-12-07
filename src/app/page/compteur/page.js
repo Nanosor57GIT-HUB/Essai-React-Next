@@ -3,6 +3,8 @@
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+//import LotoSystem from "../../components/lotoSystem/lotosystem";
+
 
 
 const Counter = () => {
@@ -66,6 +68,7 @@ const Counter = () => {
         </div>
         <Image 
         priority={true} 
+        as="image"
         src="/images/robots/robot5.webp" alt="robot5" className= "robot5" width={422} height={488} />
     <div className="containerbtncount">
         <button className="btncount" onClick={handlePause} disabled={isCountButtonDisabled}>
@@ -77,7 +80,8 @@ const Counter = () => {
           </button>
         )}
         </div>
-      </div>
+        {/* <LotoSystem />  */}
+      </div>       
      </main>
   );
 };

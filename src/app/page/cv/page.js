@@ -24,7 +24,8 @@ const CV = () => {
           Vous êtes sur la page CV
         </h1>
         <Image
-        //  priority={true}
+          priority={true}
+          as="image"
           src="/images/robots/robot2.webp"
           alt="robot2"
           className="robot2"
