@@ -1,0 +1,190 @@
+/* styles/contact.module.css */
+
+.pagecontact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 70vh;
+}
+
+.imgformcontact {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.titlecontact {
+  position: absolute;
+  color: aquamarine;
+}
+.tablettecontact {
+  position: relative;
+  transform: rotate(180deg);
+  width: 750px;
+  height: auto;
+}
+.bg-tablette {
+  position: absolute;
+  filter: grayscale(80%);
+  opacity: 0.3;
+}
+.robot9 {
+  position: absolute;
+  bottom: 75px;
+  right: 25px;
+  max-width: 150px;
+  height: auto;
+  filter: drop-shadow(2px 2px 1px #333333) brightness(0.8);
+}
+
+.formulaireContact,
+.contactForm {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 380px;
+}
+.labelFormContact {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.name,
+.email {
+  display: flex;
+  width: 70%;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+#name::placeholder,
+#email::placeholder {
+  font-size: 13px;
+  font-weight: normal;
+  opacity: 0.5;
+}
+
+.requiredIndicator {
+  font-size: 24px;
+  color: #122c5e;
+  font-weight: bold;
+}
+
+.astérisqueSpécifie {
+  position: absolute;
+  top: -5px;
+  right: 0;
+   font-size: 16px;
+  font-weight: bold;
+}
+
+.specifieIndicator {
+font-size: 20px;
+vertical-align: middle;
+ color: #122c5e;
+}
+
+
+.blockTextarea {
+  width: auto;
+  height: 52%;
+}
+.message {
+  width: 92%;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 7px;
+  overflow: scrollY;
+}
+#message::placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  opacity: 0.5;
+  letter-spacing: -1px;
+}
+.maxChars {
+  font-size: 16px;
+  color: #333333;
+}
+.errorMessage {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  margin-left: 10px;
+}
+.btncontainercontact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 50px;
+}
+.btncontact {
+  width: 80px;
+  height: 30px;
+  font-weight: bold;
+  color: aquamarine;
+  background-color: #333333;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px aquamarine;
+}
+
+.containerConfirmModal { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modalConfirmContact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 7px;
+}
+
+.closeConfirmContact {
+  position: absolute;
+  text-decoration: none;
+  font-size: 18px;
+  top: 15px;
+  right: 15px;
+  font-weight: bold;
+  color: yellowgreen;
+  border: 1px solid yellowgreen;
+  border-radius: 25px;
+  padding: 3px 7px;
+  text-shadow: 1px 1px 3px #333333;
+}
+
+.closeConfirmContact:hover {
+color: #2c75ff;
+border: 1px solid #2c75ff;
+}
+
+.textConfirmContact {
+  font-size: 26px;
+  text-align: center;
+  color: aquamarine;
+  margin: 8px 0;
+  text-shadow: 1px 0px 3px #333333;
+}
+
+
+
+.ok {
+  position: absolute;
+  font-size: 360px;
+z-index: 10000;
+}

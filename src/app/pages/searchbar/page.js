@@ -1,5 +1,6 @@
 "use client"
 
+//import styles from "@/app/styles/searchbar.module.css"
 import { useTheme } from '@/app/context/themecontext';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -53,7 +54,7 @@ const SearchPage = () => {
           <ol type='I' className='olsearch'>
             {searchResults.map((result, index) => (
               <li className='lisearch' key={index}>
-                <Link href={result.path === "/" ? "/" : `/page/${result.path}`} className='linksearch'>
+                <Link href={result.path === "/" ? "/" : `/pages/${result.path}`} className='linksearch'>
                   <div className='resultsearch'>{result.title}</div>
                 </Link>
               </li>

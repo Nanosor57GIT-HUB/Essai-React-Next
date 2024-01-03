@@ -1,8 +1,8 @@
 "use client"
 
+import styles from "@/app/styles/threeshellgame.module.css"
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
 
 // Fonction pour calculer la taille de la pièce en fonction de la largeur de la fenêtre
 const calculateCoinSize = (windowWidth, rowIndex, index) => {
@@ -15,7 +15,6 @@ const calculateCoinSize = (windowWidth, rowIndex, index) => {
     return 40 * (rowIndex % 2 === 0 && index ? 0.8 : 1);
   }
 };
-
 
 const Coin = ({ index, rowIndex }) => {
   const [windowWidth, setWindowWidth] = useState(0);
@@ -36,21 +35,17 @@ const Coin = ({ index, rowIndex }) => {
 
   const randomLeft = Math.random() * 100; // Entre 0% et 100% (pour la largeur du scale)
   const randomTop = Math.random() * -80 -50; // Entre -60px et -30px (pour éviter un chevauchement significatif)
-  const animationDuration= 2 + Math.random() * 3;
+  const animationDuration = 2 + Math.random() * 3;
+
+
 
   const coinStyle = {
     left: `${randomLeft}vw`,
     top: `${randomTop}px`,  
-   // animation: `rotate ${animationDuration}s linear infinite`,
   };
 
   const coinSize = calculateCoinSize(windowWidth, rowIndex, index);
 
-
-  // const coinSizeStyle = {
-  //   width: `${coinSize * (rowIndex % 2 === 0 && index ? 0.8 : 1)}px`,
-  //   height: `${coinSize * (rowIndex % 2 === 0 && index ? 0.8 : 1)}px`,
-  // };
   const coinSizeStyle = {
     width: `${coinSize}px`,
     height: `${coinSize}px`,
@@ -62,13 +57,13 @@ const Coin = ({ index, rowIndex }) => {
   };
 
   return (
-    <div  className="coin" style={{ ...coinStyle, ...animationStyle }}>
+    <div  className={styles.coin} style={{ ...coinStyle, ...animationStyle }}>
       <Image
       priority={true}
       as="image"
         src="/images/coin/Dollar-Gold.png" 
         alt="Coin"
-        className="coin"
+        className={styles.coin}
         width={coinSize}
         height={coinSize}
         style={coinSizeStyle}
@@ -76,7 +71,5 @@ const Coin = ({ index, rowIndex }) => {
     </div>
   );
 };
-
-
 
 export default Coin;

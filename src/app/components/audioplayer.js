@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import styles from "@/app/styles/accueil.module.css"
 import Image from "next/image";
 
 const Audioplayer = () => {
@@ -57,15 +58,15 @@ const Audioplayer = () => {
   return (
     <div>
       {error ? (
-        <p className="errorplayer">
+        <p className={styles.errorplayer}>
           Votre navigateur ne supporte pas l&#39;élément audio.
         </p>
       ) : (
-        <div className="containeraudio">
+        <div className={styles.containeraudio}>
           <audio
             controls
-            className={`nativeaudioplayer ${
-              isPlaying || musicEnded ? "" : "player-fade-out"
+            className={`${styles.nativeaudioplayer} ${
+              isPlaying || musicEnded ? "" : styles['player-fade-out']
             }`}
             onError={() => handleAudioError()}
           //  onLoadedMetadata={() => handleAudioLoaded()}
@@ -79,17 +80,17 @@ const Audioplayer = () => {
             />
           </audio>
           <button
-            className={`btnplayer ${musicEnded ? "btnplayer-fade-out" : ""}`}
+            className={`${styles.btnplayer} ${musicEnded ? styles['btnplayer-fade-out'] : ""}`}
             onClick={() => handleButtonClick()}
             ref={playButtonRef}
           >
             {isPlaying ? "Pause ⏸️" : "Play ▶️"}
           </button>
-          <div className="robotcontainer">
-        <Image priority={true} src="/images/robots/robot1.webp" alt="robot1"  width={658} height={747} className="robot1"
+          <div className={styles.robotcontainer}>
+        <Image priority={true} src="/images/robots/robot1.webp" alt="robot1"  width={658} height={747} className={styles.robot1}
        />
       
-          <div className="containermarquee">
+          <div className={styles.containermarquee}>
             {currentAudioTitle && isPlaying && (
               <marquee behavior="scroll" direction="left">
                 <h2>{currentAudioTitle}</h2>

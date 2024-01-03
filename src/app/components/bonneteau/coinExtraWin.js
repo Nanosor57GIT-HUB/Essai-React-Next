@@ -1,5 +1,6 @@
 "use client"
 
+import styles from "@/app/styles/threeshellgame.module.css"
 import Image from "next/image";
 
 const CoinsExtraWin = ({ index, rowIndex }) => {
@@ -40,18 +41,20 @@ const CoinsExtraWin = ({ index, rowIndex }) => {
 
       const animationDuration = 4 + Math.random() * 6;
 
+   
+
       const animationStyle = {
         animation: `fall ${animationDuration}s linear infinite`,
       };
   
     return (
-      <div className="coin" style={{ ...coinsStyle, ...animationStyle }}>
+      <div className={styles.coin} style={{ ...coinsStyle, ...animationStyle }}>
         <Image
         priority={true}
         as="image"
           src={coin.imageSrc} // Utilisez l'image correspondante à la pièce
           alt={`Coin ${coin.id}`}
-          className="coin"
+          className={styles.coin}
           width={coinsSize}
           height={coinsSize}
           style={coinsSizeStyle}

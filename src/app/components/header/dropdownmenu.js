@@ -23,13 +23,16 @@ const DropdownMenu = () => {
 
   useEffect(() => {
     // Désactive le bouton de menu-toggle lorsque la route change, à moins que ce ne soit un lien du menu
-    if (!currentRoute.startsWith("/page/usememo") && !currentRoute.startsWith("/page/usecallback")) {
+    if (!currentRoute.startsWith("/pages/lotoGame") && !currentRoute.startsWith("/page/threeShellGame")) {
       setIsMenuToggleActive(false);
     }
   }, [currentRoute]);
 
 
-
+// Mettre à jour setIsMenuToggleActive en fonction de l'état du menu ou du lien actif
+useEffect(() => {
+  setIsMenuToggleActive(isMenuOpen || currentRoute.startsWith("/pages/lotoGame") || currentRoute.startsWith("/pages/threeShellGame"));
+}, [isMenuOpen, currentRoute]);
 
 
 
@@ -46,8 +49,8 @@ const DropdownMenu = () => {
           <ul>
             <li className="limenu">
               <Link
-                href="/page/usememo"
-                as="/page/usememo"
+                href="/pages/lotoGame"
+                as="/pages/lotoGame"
                 className="link"
                 style={{
                   color: theme.color4,
@@ -60,17 +63,17 @@ const DropdownMenu = () => {
               >
                 <div
                   className={`linkmenu ${
-                    currentRoute === "/page/usememo" ? "active" : ""
+                    currentRoute === "/pages/lotoGame" ? "active" : ""
                   }`}
                 >
-                  UseMemo
+                  Loto
                 </div>
               </Link>
             </li>
             <li className="limenu">
               <Link
-                href="/page/usecallback"
-                as="/page/usecallback"
+                href="/pages/threeShellGame"
+                as="/pages/threeShellGame"
                 className="link"
                 style={{
                   color: theme.color4,
@@ -83,10 +86,10 @@ const DropdownMenu = () => {
               >
                 <div
                   className={`linkmenu ${
-                    currentRoute === "/page/usecallback" ? "active" : ""
+                    currentRoute === "/pages/threeShellGame" ? "active" : ""
                   }`}
                 >
-                  UseCallback
+                  Bonneteau
                 </div>
               </Link>
             </li>

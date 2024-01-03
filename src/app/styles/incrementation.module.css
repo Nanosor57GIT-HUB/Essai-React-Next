@@ -1,0 +1,79 @@
+/* styles/incrementation.module.css */
+
+.pageincrement {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+  }
+  
+  .titleincrement { 
+    position: absolute;
+     width: 100%;
+    font-size: 48px;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .robot3 {
+    position: absolute;
+    right: 0;
+    bottom: -34px;
+    width: 350px;
+    height: auto;
+    filter: drop-shadow(5px 5px 4px #333333) saturate(20%);
+    z-index: 1090;
+  }
+  .blockincrement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 450px;
+    margin: 0 auto;
+  }
+  .numberlike {
+    font-size: 48px;
+    font-weight: bold;
+    color: brown;
+  }
+  .blockbtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .btnlike {
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333333;
+    color: aquamarine;
+    /* text-shadow: 1px 1px 0px aquamarine; */
+    box-shadow: 1px 2px 2px #333333;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .btnlike:hover {
+    color: rgb(219, 195, 167);
+    text-shadow: none;
+  }
+  .mercilike {
+    position: absolute;
+    right: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    transform: translateX(50%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .mercilike.show {
+    opacity: 1;
+  }
+  .btnlike:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }

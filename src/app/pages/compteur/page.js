@@ -1,10 +1,9 @@
 "use client";
 
+import styles from '@/app/styles/compteur.module.css';
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-//import LotoSystem from "../../components/lotoSystem/lotosystem";
-
 
 
 const Counter = () => {
@@ -57,30 +56,29 @@ const Counter = () => {
   return (
     <main className="mainpages">
       <div
-        className="pagecompteur"
+        className={styles.pagecompteur}
         style={{
           background: theme.background,
         }}
-      >
-        <h1 className="titlecompteur">Compteur : <span className="numbercompteur">{countRef.current}</span></h1>
-        <div className="elapsed-time">
+      >  <div className={styles['elapsed-time']}>
           Temps écoulé : {elapsedTime} secondes
         </div>
+        <h1 className={styles.titlecompteur}>Compteur : <span className={styles.numbercompteur}>{countRef.current}</span></h1>
+      
         <Image 
         priority={true} 
         as="image"
-        src="/images/robots/robot5.webp" alt="robot5" className= "robot5" width={422} height={488} />
-    <div className="containerbtncount">
-        <button className="btncount" onClick={handlePause} disabled={isCountButtonDisabled}>
+        src="/images/robots/robot5.webp" alt="robot5" className={styles.robot5} width={422} height={488} />
+    <div className={styles.containerbtncount}>
+        <button className={styles.btncount} onClick={handlePause} disabled={isCountButtonDisabled}>
           {buttonText}
         </button>
         {isStopButtonVisible && (
-          <button className="btnstop" onClick={handleStop}>
+          <button className={styles.btnstop} onClick={handleStop}>
             Stop
           </button>
         )}
         </div>
-        {/* <LotoSystem />  */}
       </div>       
      </main>
   );

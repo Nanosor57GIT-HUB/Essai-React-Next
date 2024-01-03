@@ -1,6 +1,8 @@
 "use client";
 
 //https://nextjs.org/docs/app/building-your-application/optimizing/fonts#using-multiple-fonts
+
+import styles from "@/app/styles/contact.module.css"
 import { useTheme } from "@/app/context/themecontext";
 import ContactForm from "./contactForm";
 import Image from "next/image";
@@ -11,13 +13,13 @@ const Contact = () => {
   return (
     <main className="mainpages">
       <div
-        className="pagecontact"
+        className={styles.pagecontact}
         style={{
           background: theme.background,
         }}
       >
-        <div className="imgformcontact">
-          <video autoPlay loop className="bg-tablette" width={700} height={500}>
+        <div className={styles.imgformcontact}>
+          <video autoPlay loop className={styles['bg-tablette']} width={700} height={500}>
             <source src="/images/giphy.mp4" type="video/mp4" />
             Votre navigateur ne prend pas en charge la balise vidéo.
           </video>
@@ -27,25 +29,25 @@ const Contact = () => {
             as="image"
             src="/images/tablet.webp"
             alt="tabletteContact"
-            className="tablettecontact"
+            className={styles.tablettecontact}
             width={1841}
             height={1334}
           />
           <ContactForm />
-          <h1
-            className="titlecontact"
+          {/* <h1
+            className={styles.titlecontact}
             style={{
               color: theme.color,
             }}
           >
             Installation formulaire de contact
-          </h1>
+          </h1> */}
           <Image
             priority={true}
             as="image"
             src="/images/robots/robot9.webp"
             alt="robot9"
-            className="robot9"
+            className={styles.robot9}
             width={804}
             height={739}
           />

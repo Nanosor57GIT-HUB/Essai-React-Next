@@ -1,7 +1,9 @@
 "use client";
 
+import styles from "@/app/styles/incrementation.module.css"
 import { useTheme } from "@/app/context/themecontext";
 import { useEffect, useState } from "react";
+import { Interfont } from "@/app/style.font";
 import Image from "next/image";
 
 const Like = () => {
@@ -52,13 +54,13 @@ const Like = () => {
   return (
     <main className="mainpages">
       <div
-        className="pageincrement"
+        className={styles.pageincrement}
         style={{
           background: theme.background,
         }}
       >
         <h1
-          className="titleincrement"
+        className={`${styles.titleincrement} ${Interfont.className}`}
           style={{
             color: theme.color,
           }}
@@ -70,21 +72,21 @@ const Like = () => {
           as="image"
           src="/images/robots/robot3.webp"
           alt="robot3"
-          className="robot3"
+          className={styles.robot3}
           width={600}
           height={942}
         />
-        <div className="blockincrement">
-          <h2 className="numberlike">{number}</h2>
-          <div className="blockbtn">
+        <div className={styles.blockincrement}>
+          <h2 className={styles.numberlike}>{number}</h2>
+          <div className={styles.blockbtn}>
             <button
-              className={`btnlike ${isButtonDisabled ? "disabled" : ""}`}
+              className={`${styles.btnlike} ${isButtonDisabled ? styles.disabled : ""} ${Interfont.className}`}
               onClick={() => increment()}
               disabled={isButtonDisabled}
             >
               Like moi !
             </button>
-            <p className={`mercilike ${showMessage ? "show" : ""}`}>
+            <p className={`${styles.mercilike} ${showMessage ? styles.show : ""}`}>
               Merci pour ton like ! &#x1F44D;
             </p>
           </div>

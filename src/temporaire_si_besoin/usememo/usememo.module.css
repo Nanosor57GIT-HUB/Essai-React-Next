@@ -1,0 +1,70 @@
+/* useMemo */ 
+
+ .pageusememo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: 70vh;
+}
+.robot6 {
+  width: 200px;
+  height: auto;
+  animation: shakeRotate 2s 2 alternate ease-in-out;
+  animation-delay: 1s;
+}
+@keyframes shakeRotate {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px) rotate(-3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px) rotate(3deg);
+  }
+}
+.blocknumberusememo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 40%;
+  height: auto;
+  background-color: #2c75ff;
+  border: 2px solid #d07e26;
+  border-radius: 15px;
+}
+.blocknumbers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: auto;
+  height: 80px;
+  padding: 0 20px;
+  margin: 20px 0;
+}
+.numberlist,
+.totalnumberlist {
+  font-size: 17px;
+  font-weight: bold;
+}
+.numbers {
+  color: brown;
+}
+.total {
+  color: aquamarine;
+  padding: 3px 6px;
+  border: 2px solid brown;
+  border-radius: 50%;
+} 

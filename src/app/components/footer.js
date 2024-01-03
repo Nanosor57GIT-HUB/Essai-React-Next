@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer">
             <h3 className='titlefooter'  style={{
             color: theme.color4,
-          }}>Ceci est le footer</h3>
+          }}>Copyright &copy; MyPortfolioInline</h3>
             </div>
         </>
     );

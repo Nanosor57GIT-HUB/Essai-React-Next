@@ -1,8 +1,10 @@
 "use client";
 
+import styles from "@/app/styles/testapi.module.css"
 import { useTheme } from "@/app/context/themecontext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Interfont } from "@/app/style.font";
 import Image from "next/image";
 
 const TestApi = () => {
@@ -41,44 +43,45 @@ const TestApi = () => {
   return (
     <main className="mainpages">
       <div
-        className="pageapi"
+        className={styles.pageapi}
         style={{
           background: theme.background,
         }}
-      >
-        <h1 className="titleapi" style={{
+      > 
+        <h1 className={`${styles.titleapi} ${Interfont.className}`} style={{
           color: theme.color,
         }}>
           Mise en place d&#x27;API avec axios
         </h1>
-        <div className="robot4container" style={{ display: loading || error ? 'none' : 'block' }}>
+        <div className={styles.robot4container} style={{ display: loading || error ? 'none' : 'block' }}>
           <Image
             priority={true}
             as="image"
             src="/images/robots/robot4.webp" 
             alt="robot4"
-            className="robot4"
+            className={styles.robot4}
             width={1229}
             height={1260}
           />
         </div> 
         <div>
         {loading ? (
-            <p className="chargementencours">Chargement en cours ...</p>
+            <p className={styles.chargementencours}>Chargement en cours ...</p>
           ) : error ? (
-            <p className="erreurchargement">{error}</p>
+            <p className={styles.erreurchargement}>{error}</p>
           ) : (
-            <ul className="ulapi" >
+            <ul className={styles.ulapi} >
               {data &&
                 data.map((item, index) => (
                   <li
-                    className="liapi"
+                    className={styles.liapi}
                     style={{
                       background: theme.background2,
                     }}
                     key={item.ticker + '_' + index}
                   >
-                    {item.name}
+                  {item.name}
+                   
                   </li>
                 ))}
             </ul>

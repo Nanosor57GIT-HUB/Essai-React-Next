@@ -1,0 +1,55 @@
+/* styles/compteur.module.css */
+
+.pagecompteur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 70vh;
+  }
+  
+  .elapsed-time {
+    position: absolute;
+    top: 20vh;
+    font-size: 24px;
+  }
+  .numbercompteur {
+    color: #fff;
+  }
+  .robot5 {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(4px 4px 4px #333333) saturate(20%);
+  }
+  .containerbtncount {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+  }
+  .btnstop,
+  .btncount {
+    width: 100px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 17px;
+    color: aquamarine;
+    background-color: #333333;
+    border: none;
+    font-weight: bold;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  .btnstop:hover,
+  .btncount:hover {
+    font-size: 16px;
+  }
+  .btncount:disabled {
+    color: rgb(
+      185,
+      179,
+      179
+    ); /* Couleur du texte lorsque le bouton est désactivé */
+    background-color: #3333338a; /* Couleur de fond lorsque le bouton est désactivé */
+    cursor: not-allowed; /* Curseur non autorisé lorsque le bouton est désactivé */
+  }
+  

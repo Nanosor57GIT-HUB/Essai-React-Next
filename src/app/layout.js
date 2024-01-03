@@ -1,5 +1,3 @@
-
-
 import { RootProvider } from "./context/rootcontext";
 import "./globals.css";
 import Header from "./components/header/header";
@@ -27,3 +25,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

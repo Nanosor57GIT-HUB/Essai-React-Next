@@ -25,7 +25,7 @@ export const HeaderProvider = ({ children }) => {
    //Hook pour gestion du toggle entre la nav principal et la nav du burger
  //  const [isNavOpen, setIsNavOpen] = useState(window.innerWidth >= 800);
  // Vérification de la disponibilité de localStorage
- const [isNavOpen, setIsNavOpen] = useState(window.innerWidth >= 800);
+ const [isNavOpen, setIsNavOpen] = useState(window.innerWidth >= 801);
 
 const menuContainerRef = useRef(null);
  const dropdownMenuRef = useRef(null);
@@ -59,19 +59,8 @@ const menuContainerRef = useRef(null);
           closeDropdownMenu();
         }
       }, [isMenuOpen, closeDropdownMenu]);
-    
-      
-
   // fin de gestion du menu déroulant***************************************
 
-
-  // gestion d'ouverture et fermeture du burger et de la barre de navigation principale **************************************************
-
-//Rend active ou pas la gestion du burger menu ouvert/fermé
-  // const toggleBurger = () => {
-  //   setBurgerActive(!burgerActive);
-   
-  // };
  
 /**
  * Gère le redimensionnement de la fenêtre et met à jour les états du burger et de la barre de navigation principale en conséquence.
@@ -80,7 +69,7 @@ const menuContainerRef = useRef(null);
 // gestion de suppression du menu burger si sup. à 800px
 const handleWindowResize = useCallback(() => {
   const newWindowWidth = window.innerWidth;
-  if (newWindowWidth >= 800) {
+  if (newWindowWidth >= 801) {
     setBurgerActive(false);
     setIsNavOpen(true);
   }   else {  

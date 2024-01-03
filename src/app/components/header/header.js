@@ -7,11 +7,11 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import DropdownMenu from "./dropdownmenu";
 
+
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
-  const { toggleBurger, burgerActive, isNavOpen, closeMenuBurger, menuContainerRef } = useHeader();
 
- 
+  const { toggleBurger, burgerActive, isNavOpen, closeMenuBurger, menuContainerRef } = useHeader();
 
   const currentRoute = usePathname();
 
@@ -54,8 +54,8 @@ export default function Header() {
           <div className={currentRoute === "/" ? "active" : ""}>Accueil</div>
         </Link>
         <Link
-          href="/page/cv"
-          as="/page/cv"
+          href="/pages/cv"
+          as="/pages/cv"
           passHref
           className="link"
           style={{
@@ -63,11 +63,11 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/cv" ? "active" : ""}>CV</div>
+          <div className={currentRoute === "/pages/cv" ? "active" : ""}>CV</div>
         </Link>
         <Link
-          href="/page/incrementation"
-          as="/page/incrementation"
+          href="/pages/incrementation"
+          as="/pages/incrementation"
           passHref
           className="link"
           style={{
@@ -76,14 +76,14 @@ export default function Header() {
           onClick={closeMenuBurger}
         >
           <div
-            className={currentRoute === "/page/incrementation" ? "active" : ""}
+            className={currentRoute === "/pages/incrementation" ? "active" : ""}
           >
             Increment
           </div>
         </Link>
         <Link
-          href="/page/testapi"
-          as="/page/testapi"
+          href="/pages/testApi"
+          as="/pages/testApi"
           passHref
           className="link"
           style={{
@@ -91,14 +91,14 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/testapi" ? "active" : ""}>
+          <div className={currentRoute === "/pages/testApi" ? "active" : ""}>
             Api
           </div>
         </Link>
 
         <Link
-          href="/page/compteur"
-          as="/page/compteur"
+          href="/pages/compteur"
+          as="/pages/compteur"
           passHref
           className="link"
           style={{
@@ -106,14 +106,14 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/compteur" ? "active" : ""}>
+          <div className={currentRoute === "/pages/compteur" ? "active" : ""}>
             Compteur
           </div>
         </Link>
         <DropdownMenu/>
         <Link
-          href="/page/searchbar"
-          as="/page/searchbar"
+          href="/pages/searchbar"
+          as="/pages/searchbar"
           passHref
           className="link"
           style={{
@@ -121,13 +121,13 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/searchbar" ? "active" : ""}>
+          <div className={currentRoute === "/pages/searchbar" ? "active" : ""}>
             SearchBar
           </div>
         </Link>
         <Link
-          href="/page/contact"
-          as="/page/contact"
+          href="/pages/contact"
+          as="/pages/contact"
           passHref
           className="link"
           style={{
@@ -135,7 +135,7 @@ export default function Header() {
           }}
           onClick={closeMenuBurger}
         >
-          <div className={currentRoute === "/page/contact" ? "active" : ""}>
+          <div className={currentRoute === "/pages/contact" ? "active" : ""}>
             Contact
           </div>
         </Link>
