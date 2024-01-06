@@ -2,7 +2,7 @@
 "use client"
 
 import React, { createContext, useCallback, useContext, useEffect, useState, useRef } from 'react';
-
+import styles from "@/app/styles/header.module.css";
 /**
  * Contexte global du composant HeaderProvider.
  * Ce contexte gère l'état du menu, du burger, et de la barre de navigation principale.
@@ -82,9 +82,9 @@ useEffect(() => {
   // Ajoutez des classes conditionnelles à la balise nav en fonction de burgerActive
   if (menuContainerRef.current) {
     if (burgerActive) {
-      menuContainerRef.current.classList.add('burger-active-nav');
+      menuContainerRef.current.classList.add(styles['burger-active-nav']);
     } else {
-      menuContainerRef.current.classList.remove('burger-active-nav');
+      menuContainerRef.current.classList.remove(styles['burger-active-nav']);
     }
   }
 }, [burgerActive]);

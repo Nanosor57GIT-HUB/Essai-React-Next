@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import styles from "@/app/styles/cv.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import Image from "next/image";
-import { Interfont } from "@/app/style.font";
+import { Interfont } from "@/app/styles/style.font";
 
 
 const CV = () => {

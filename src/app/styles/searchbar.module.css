@@ -23,7 +23,7 @@
     height: auto;
     filter: drop-shadow(2px 2px 1px #333333);
   }
-  form {
+  .form {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -68,7 +68,7 @@
     display: flex;
     align-items: center;
   }
-  input {
+  .input {
     font-size: 16px;
     font-weight: 600;
     width: 100%;

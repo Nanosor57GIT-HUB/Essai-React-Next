@@ -17,6 +17,8 @@
   margin-top: 30px;
   width: 100%;
   min-height: 50vh;
+ 
+  
 }
 
 .titlePage {
@@ -45,9 +47,9 @@
   overflow-x: hidden;
 }
 
-.scroller {
+/* .scroller {
   overflow-y: scroll;
-}
+} */
 
 .titleDescription {
   color: #2c75ff;
@@ -156,6 +158,7 @@
 
 .ok {
   position: absolute;
+  top: 10%;
   font-size: 360px;
 z-index: 10000;
 }

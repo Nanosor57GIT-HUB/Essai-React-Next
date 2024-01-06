@@ -2,7 +2,7 @@
 
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState } from "react";
-import { Montserratfont } from "@/app/style.font";
+import { Montserratfont } from "@/app/styles/style.font";
 import Coin from "./coinWin";
 import CoinsExtraWin from "./coinExtraWin";
 import Image from "next/image";
@@ -44,7 +44,7 @@ const Bonneteau = () => {
     {
       id: 2,
       position: "Gagné",
-      imageSrc: "/images/Sphere2.png",
+      imageSrc: "/images/sphere2.png",
       buttonId: 2,
     },
     { id: 3, position: "Perdu2", imageSrc: "", buttonId: 3 },

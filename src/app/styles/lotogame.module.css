@@ -256,6 +256,7 @@
     width: 50%;
     height: 30px;
     line-height: 30px;
+    text-shadow: 2px 5px 10px #333333;
   }
   
   .numloto {

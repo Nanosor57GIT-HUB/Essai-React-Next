@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Montserratfont } from "@/app/style.font";
+import { Montserratfont } from "@/app/styles/style.font";
 import { useCallback } from "react";
 
 // JSON.parse convertit en chaine de caractère dans un objet(tableau) pour le récupérrer avec getItem.
