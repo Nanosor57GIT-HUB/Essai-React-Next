@@ -35,3 +35,8 @@
   // {
 //     "types": ["aria-query"]
 //   }
+
+// JSON.parse convertit en chaine de caractère dans un objet(tableau) pour le récupérrer avec getItem.
+// parseInt  analyse une chaine de caractère et récupère un nombre entier avec getItem.
+// parseFloat est utilisé pour les nombres à virgule (de la meme façon que parseInt).
+// localStorage.setItem('selectedNumbers', JSON.stringify(selectedNumbers)); Convertit en chaines de caractères pour envoyer dans le storage

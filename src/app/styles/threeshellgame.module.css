@@ -45,7 +45,7 @@
 
 .coinsgold {
   position: absolute;
-  bottom: -40px;
+  bottom: -35px;
   right: 120px;
   width: 300px;
   height: auto;
@@ -305,18 +305,23 @@
   position: absolute;
   top: 0;
   left: 50%; /*passer à 10% responsive 1250* et repasser 50% à 858*/
-  width: 100px;
-  height: 30px;
   transform: translate(-50%, -50%);
-  font-size: 16px;
-  padding: 5px;
-  border: none;
-  border-radius: 15px;
+  width: 92px;
+  height: auto;
+  font-size: 16px; 
   color: aquamarine;
-  background-color: #333333;
-  text-align: center;
-  cursor: pointer;
+  padding: 5px;
   margin-bottom: 10px;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  background-color: #2c75ff;
+  box-shadow: 1px 2px 2px #333333, inset 1px 1px 3px aquamarine;
+  cursor: pointer;
+}
+.btngame:hover,
+.btngame2:hover {
+  box-shadow: inset 1px 1px 3px #666666;
+  text-shadow:  2px 2px 3px #333333;
 }
 
 .btngame:disabled,
@@ -414,8 +419,9 @@
 
 .linkReglement {
  color: yellowgreen;
+ background-color: transparent;
   font-weight: bold;
-  text-decoration: none;
+ border-style: none;
   text-align: end;
   margin-right: 10px;
   margin-bottom: 10px;

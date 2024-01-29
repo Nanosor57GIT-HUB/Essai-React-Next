@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styles from "@/app/styles/contact.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import emailjs from "@emailjs/browser";
@@ -108,7 +109,7 @@ function ContactForm() {
 
   return (
     <div className={styles.formulaireContact} onKeyDown={handleKeyDown}>
-      <p className={styles.ok}>OK</p>
+      {/* <p className={styles.ok}>OK</p> */}
       {!submitted ? (
         <form ref={formRef} className={styles.contactForm} onSubmit={sendEmail}>
           <p className={styles.astérisqueSpécifie}>
@@ -125,7 +126,7 @@ function ContactForm() {
                 id={styles.name}
                 className={styles.name}
                 name="first_name"
-                placeholder="Mettre votre nom et prénom"
+                placeholder="Mettre votre Nom et Prénom"
                 value={formData.first_name}
                 onChange={handleChange}
                 autoComplete="name"
@@ -170,7 +171,7 @@ function ContactForm() {
                 className={styles.message}
                 name="message"
                 rows="7"
-                placeholder="Laisser moi un message ..."
+                placeholder="Laissez moi un message ..."
                 value={formData.message}
                 onChange={handleChange}
                 maxLength={350}
@@ -194,6 +195,15 @@ function ContactForm() {
               <Link href="/" className={styles.closeConfirmContact}>
                 X
               </Link>
+              <Image
+          priority={true}
+          as="image"
+          src="/images/logo/logoPortfolioName.png"
+          alt="MyPortfolioInline logoName"
+          className={styles.logoName}
+          width={1608}
+          height={908}
+        />
               <h2 className={styles.textConfirmContact}>
                 Merci <span style={{ color: "#2c75ff" }}>{submittedName}</span>{" "}
                 pour votre message !

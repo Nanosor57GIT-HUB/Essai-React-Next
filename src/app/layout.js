@@ -17,13 +17,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="fr">
       <body>       
         <RootProvider> 
           <Header />
-        <main className="scrollpages" > {children}  
+        {/* <main className="scrollpages" > */} {children}   
            <Footer />
-           </main>
+           {/* </main> */}
         </RootProvider>    
        </body>  
     </html>

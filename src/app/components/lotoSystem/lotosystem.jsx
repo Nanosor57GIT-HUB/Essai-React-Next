@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import styles from "@/app/styles/lotogame.module.css"
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useTheme } from "@/app/context/themecontext";
+import ModaleReglementGames from "../modaleReglementGames";
+import styles from "@/app/styles/lotogame.module.css";
 import Image from "next/image";
 import { Montserratfont } from "@/app/styles/style.font";
-import { useCallback } from "react";
-import Link from "next/link";
+
+//import Link from "next/link";
 
 // JSON.parse convertit en chaine de caractère dans un objet(tableau) pour le récupérrer avec getItem.
 // parseInt  analyse une chaine de caractère et récupère un nombre entier avec getItem.
@@ -13,8 +15,10 @@ import Link from "next/link";
 // localStorage.setItem('selectedNumbers', JSON.stringify(selectedNumbers)); Convertit en chaines de caractères pour envoyer dans le storage
 
 const LotoSystem = () => {
+  const { theme } = useTheme();
 
-  //  const [showEmoji, setShowEmoji] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [selectionLocked, setSelectionLocked] = useState(false);
   const containerRef = useRef(null);
@@ -28,20 +32,19 @@ const LotoSystem = () => {
     lotoMessage3: "",
   });
 
+  // Fonction de réinitialisation du stockage local
   const resetStorage = () => {
-    setSelectedNumbers([]);
-    setDailyDrawCount(null);
-    setDrawnNumbers([]);
-    localStorage.removeItem("selectedNumbers", "");
+    // Supprime les données associées au tirage quotidien
     localStorage.removeItem("dailyDrawCount");
     localStorage.removeItem("lastDrawNumbers");
     localStorage.removeItem("resultcorres");
     localStorage.removeItem("lastDrawTime");
     localStorage.removeItem("result");
-    //  localStorage.removeItem("messages");
+    localStorage.removeItem("messages");
+    localStorage.removeItem("selectedNumbers");
   };
 
-  // Mise à jour des messages dans le storage
+  // Mise à jour des messages dans le stockage local
   const updateMessage = useCallback(
     (messageKey, newMessage) => {
       setMessages((prevMessages) => ({
@@ -53,59 +56,69 @@ const LotoSystem = () => {
         JSON.stringify({ ...messages, [messageKey]: newMessage })
       );
     },
-    [messages, setMessages]
+    [messages]
   );
 
-  let matchingNumbers = 0;
-
-  useEffect(() => {
-   // let matchingNumbers = 0;
-    selectedNumbers.forEach((number) => {
-      if (drawnNumbers.includes(number)) {
-        matchingNumbers++;
-      }
-    }); 
-    localStorage.setItem("resultcorres", matchingNumbers.toString());
-    setResult(matchingNumbers);
-    if (matchingNumbers >= 2) {
-       setIsDraw(true);
-       setSelectionLocked(true) 
-    
-      updateMessage(
-        "lotoMessage3",
-        `Bravo ! Vous venez de gagner avec ${matchingNumbers} numéros.`
-      );
-      localStorage.setItem(
-        "result",
-        "gagné " + `${matchingNumbers}` + " numéros"
-      );
-    } else {
-      localStorage.setItem("result", "perdu " + `${dailyDrawCount + 0}` + "x");
-    }
-    return;
-  }, [dailyDrawCount, drawnNumbers, selectedNumbers, matchingNumbers,  updateMessage]);
-
+  // Effet secondaire pour sauvegarder les numéros sélectionnés dans le stockage local
   useEffect(() => {
     if (selectedNumbers.length > 0) {
       localStorage.setItem("selectedNumbers", JSON.stringify(selectedNumbers));
     }
   }, [selectedNumbers]);
 
+  // Fonction de sélection/désélection d'un numéro
   const selectNumber = (number) => {
     if (!isDraw && !selectionLocked) {
       if (selectedNumbers.includes(number)) {
+        // Désélectionne le numéro
         const updatedNumbers = selectedNumbers.filter(
           (selected) => selected !== number
         );
         setSelectedNumbers(updatedNumbers);
         updateMessage("lotoMessage1", "");
       } else if (selectedNumbers.length < 6) {
+          // Sélectionne le numéro si moins de 6 numéros sont déjà sélectionnés
         setSelectedNumbers([...selectedNumbers, number]);
         updateMessage("lotoMessage1", "");
       }
     }
   };
 
+ // Effet secondaire pour gérer le message de gagné avec la correspondance
+  useEffect(() => {
+    // Initialisation du compteur de numéros correspondants
+    let matchingNumbers = 0;
+    selectedNumbers.forEach((number) => {
+      // Vérification si le numéro sélectionné est présent dans les numéros tirés
+      if (drawnNumbers.includes(number)) {
+        matchingNumbers++;
+      }
+    });
+    if (!isDraw && dailyDrawCount <= 3) {
+      setResult(matchingNumbers);
+      if (matchingNumbers >= 3) {
+        setIsDraw(true);
+        setSelectionLocked(true);
+        updateMessage(
+          "lotoMessage2",
+          `Bravo ! Vous venez de gagner avec ${matchingNumbers} numéros.`
+        );
+        localStorage.setItem(
+          "result",
+          "gagné " + `${matchingNumbers}` + " numéros"
+        );
+      }
+      if (dailyDrawCount > 0) {
+        localStorage.setItem("resultcorres", matchingNumbers.toString());
+        localStorage.setItem(
+          "result",
+          "perdu " + `${dailyDrawCount + 0}` + "x"
+        );
+      }
+    }
+  }, [dailyDrawCount, drawnNumbers, selectedNumbers, isDraw, updateMessage]);
+
+// Effet secondaire pour ajuster la largeur du conteneur de la grille en fonction des numéros sélectionnés
   useEffect(() => {
     if (containerRef.current) {
       const containerWidth = 34 + selectedNumbers.length * 34;
@@ -114,10 +127,11 @@ const LotoSystem = () => {
   }, [selectedNumbers]);
 
   /////////////////////////////////  Gestion countdown /////////////////////////
+// Fonction pour calculer le temps écoulé depuis le dernier tirage
   const calculateTimeElapsed = useCallback(() => {
     const savedLastDrawTime = parseInt(localStorage.getItem("lastDrawTime"));
     const currentTime = Date.now();
-    const TWO_MINUTES = 0.5 * 60 * 1000;
+    const TWO_MINUTES = 0.2 * 60 * 1000;
     const timeElapsed = currentTime - savedLastDrawTime;
     const remainingTime = TWO_MINUTES - timeElapsed;
     let hoursRemaining = Math.floor(remainingTime / (1000 * 60 * 60)); // Calcul des heures restantes
@@ -131,7 +145,6 @@ const LotoSystem = () => {
       minutesRemaining = 0;
       hoursRemaining += 1;
     }
-
     /// Formater les minutes/secondes avec un zéro devant si besoin ///
     const formattedMinutes =
       minutesRemaining < 10
@@ -142,7 +155,6 @@ const LotoSystem = () => {
         ? `0${secondsRemaining}`
         : secondsRemaining.toString();
     ////////////////////// fin formatter //////////////////////////////
-
     return {
       savedLastDrawTime,
       currentTime,
@@ -158,12 +170,13 @@ const LotoSystem = () => {
   }, []);
   ////////////////////////////// End gestion countdown ////////////////
 
- 
+// Fonction de tirage des numéros
   const drawNumbers = () => {
-    if (!isDraw && dailyDrawCount < 3) {
+    if (!isDraw && dailyDrawCount <= 3) {
       // Vérification du nombre de numéros sélectionnés
       const missingNumbers = 6 - selectedNumbers.length;
       if (missingNumbers > 0) {
+        // Affiche un message si des numéros manquent
         updateMessage(
           "lotoMessage1",
           `Veuillez sélectionner ${missingNumbers} numéro(s) de plus.`
@@ -185,9 +198,6 @@ const LotoSystem = () => {
       setDrawnNumbers(numbers);
       localStorage.setItem("lastDrawNumbers", JSON.stringify(numbers));
 
-     
-      //localStorage.setItem("resultcorres", matchingNumbers.toString());
-
       const updatedDailyDrawCount = dailyDrawCount + 1;
       if (dailyDrawCount < 3) {
         setDailyDrawCount(updatedDailyDrawCount);
@@ -199,70 +209,50 @@ const LotoSystem = () => {
     }
   };
 
- 
-
+ // Effet secondaire pour gérer le message "revenir plus tard"
   useEffect(() => {
-    if (dailyDrawCount === 3) {
-      let updateMessageInterval;
-      if (matchingNumbers < 2) {
-        // Vérification que count est supérieur à 2
-        updateMessageInterval = setInterval(() => {
-          const {
-            hoursRemaining,
-            formattedMinutes,
-            secondsRemaining,
-            formattedSeconds,
-          } = calculateTimeElapsed();
+    if (dailyDrawCount === 3 && result < 3) {
+      setIsDraw(true);
+      const updateMessageInterval = setInterval(() => {
+        const {
+          remainingTime,
+          hoursRemaining,
+          formattedMinutes,
+          secondsRemaining,
+          formattedSeconds,
+        } = calculateTimeElapsed();
+        const threshold = 1000;
+        updateMessage(
+          "lotoMessage3",
+          `Vous venez d'effectuer vos 3 tirages. Vous devez attendre ${hoursRemaining}H\u00A0${formattedMinutes}Minutes\u00A0${formattedSeconds}S pour retenter votre chance.`
+        );
 
-     
-          updateMessage(
-            "lotoMessage2",
-            `Vous venez d'effectuer vos 3 tirages. Vous devez attendre ${hoursRemaining}H\u00A0${formattedMinutes}Minutes\u00A0${formattedSeconds}S pour retenter votre chance.`
-          );
-
-          if (
-            hoursRemaining <= 0 &&
-            formattedMinutes <= 0 &&
-            secondsRemaining <= 0
-          ) {
-            clearInterval(updateMessageInterval);
-          }
-        }, 1000);
-         return () => clearInterval(updateMessageInterval);
-       } else {
-        updateMessage("lotoMessage2", "");
-        setSelectionLocked(true);
-        setIsDraw(true);
-      }
+        if (
+          hoursRemaining <= 0 &&
+          formattedMinutes <= 0 &&
+          secondsRemaining <= 0
+        ) {
+          clearInterval(updateMessageInterval);
+        }
+        if (remainingTime <= threshold) {
+          updateMessage("lotoMessage3", "");
+          resetStorage();
+          setSelectedNumbers([]);
+          setDrawnNumbers([]);
+          setSelectionLocked(false);
+          setDailyDrawCount(null);
+          setIsDraw(false);
+        }
+      }, 1000);
+      return () => clearInterval(updateMessageInterval);
     }
-  }, [dailyDrawCount, matchingNumbers, updateMessage, calculateTimeElapsed]);
+  }, [dailyDrawCount, result, calculateTimeElapsed, updateMessage]);
 
-
-
-  useEffect(() => {
-    const { remainingTime } = calculateTimeElapsed();
-    const threshold = 1000;
-    if (remainingTime <= threshold) {
-      setSelectionLocked(true);
-      const messageTimeout = setTimeout(() => {
-        updateMessage("lotoMessage2", "");
-        resetStorage();
-        setSelectionLocked(false);
-        setIsDraw(false);
-      }, remainingTime);
-     // localStorage.removeItem("messages");
-      return () => clearTimeout(messageTimeout);
-    }
-  }, [updateMessage, calculateTimeElapsed]);
-
-
-
-
+  // Effet secondaire pour récupérer les éléments du stockage local au chargement de la page
   useEffect(() => {
     const savedSelectedNumbers = JSON.parse(
       localStorage.getItem("selectedNumbers")
     );
-    
 
     const savedDailyDrawCount = parseInt(
       localStorage.getItem("dailyDrawCount")
@@ -303,45 +293,46 @@ const LotoSystem = () => {
     }
   }, []);
 
-
-
   return (
-    <div className={styles['loto-container']}>
+    <div className={styles["loto-container"]}>
       {Object.entries(messages).map(([key, value]) => (
         <div
           key={key}
-          className={`${styles['loto-message-container']} ${value ? styles['fade-in-message']  : ""}`}
+          className={`${styles["loto-message-container"]} ${
+            value ? styles["fade-in-message"] : ""
+          }`}
         >
-          {value && <div className={styles['loto-message']}>{value}</div>}
+          {value && <div className={styles["loto-message"]}   style={{
+          background: theme.background2,
+        }}>{value}</div>}
         </div>
-      ))} 
-        <Image
-          priority={true}
-          as="image"
-          src="/images/lotoGame.png"
-          alt="loto game"
-          className={styles.lotoBg}
-          width={693}
-          height={693}
-        />
+      ))}
+      <Image
+        priority={true}
+        as="image"
+        src="/images/lotoGame.png"
+        alt="loto game"
+        className={styles.lotoBg}
+        width={693}
+        height={693}
+      />
       <h2 className={`${styles.titlegameloto} ${Montserratfont.className}`}>
         Loto Système 6/28
-     
       </h2>
-      <div className={styles['wrapper-descript-lotosystem']}>
+      <div className={styles["wrapper-descript-lotosystem"]}>
         <h3>Joue à notre super loto et gagne ...</h3>
-        <div className={styles['title-reglement']}>
+        <div className={styles["title-reglement"]}>
           <h4>Règlement:</h4>
-          <p className={styles['reglement-text']}>
-            Selectionne 6 numéros, 3 tirages. Tu gagnes, envoie tes coordonnées. Tu perds, tu devras attendre 24 heures pour pouvoir rejouer.
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          
+          <p className={styles["reglement-text"]}>
+            Selectionne 6 numéros, 3 tirages. Tu gagnes, envoie tes coordonnées.
+            Tu perds, tu devras attendre 24 heures pour pouvoir rejouer. eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut
           </p>
         </div>
-        <div className={styles['lottery-winnings']}>
+        <div className={styles["lottery-winnings"]}>
           <ul>
-          <li>
+            <li>
               3 bons numéros ...
               <span className={styles.winning}>1 semaine d&#39;abonnement</span>
             </li>
@@ -361,32 +352,39 @@ const LotoSystem = () => {
         </div>
         <h3 className={styles.titlematchresult}>
           Vous avez
-          <span className={styles['result-correspondence']}>{result}</span>
+          <span className={styles["result-correspondance"]}>{result}</span>
           bon numéro(s)
         </h3>
-        <Link
+        {/* <Link
           href="/pages/reglement#loto"
           as="/pages/reglement#loto"
           passHref
           className={styles.linkReglement}
-       
-        >Règlement du jeu 👉</Link>
+        >
+          Règlement du jeu 👉
+        </Link> */}
+        <button className={styles.linkReglement} onClick={() => setModalOpen(true)}  style={{
+            color: theme.color4,
+          }}>Règlement du jeu 👉</button>
       </div>
-      <div className={styles['wrapper-lotogame']}>
+      <ModaleReglementGames isOpen={modalOpen} onClose={() => setModalOpen(false)} gameType="loto" />
+      <div className={styles["wrapper-lotogame"]}>
         <div>
           <h3>Votre sélection :</h3>
-          <div className={styles['numberselect-container']} ref={containerRef}>
+          <div className={styles["numberselect-container"]} ref={containerRef}>
             {selectedNumbers.length === 0 ? (
-    <Image
-    priority={true}
-    as="image"
-      src="/images/lotoBowl.png"
-      alt="Image alternative" 
-      className={styles.lotoBowl} 
-      width={34}
-      height={34}
-    />
-  ) : ""}
+              <Image
+                priority={true}
+                as="image"
+                src="/images/lotoBowl.png"
+                alt="Image alternative"
+                className={styles.lotoBowl}
+                width={34}
+                height={34}
+              />
+            ) : (
+              ""
+            )}
             {selectedNumbers.map((number) => (
               <span className={styles.numberselect} key={number}>
                 {number}
@@ -394,11 +392,11 @@ const LotoSystem = () => {
             ))}
           </div>
         </div>
-        <div className={styles['wrapper-grid']}>
+        <div className={styles["wrapper-grid"]}>
           <h3 className={styles.selectnumbertitle}>
             Sélectionnez 6 numéros dans la grille
           </h3>
-          <div className={styles['numberloto-container']}>
+          <div className={styles["numberloto-container"]}>
             <div className={styles.blocknumbers}>
               {[...Array(28).keys()].map((number) => (
                 <span
@@ -411,15 +409,21 @@ const LotoSystem = () => {
                       !selectedNumbers.includes(number + 1)
                         ? "pointer"
                         : "not-allowed",
-                    opacity: selectedNumbers.includes(number + 1) ? 0.8 : 1,
+                    opacity: selectedNumbers.includes(number + 1) ? 0.9 : 1,
                     backgroundColor: selectedNumbers.includes(number + 1)
                       ? "#666666"
                       : "",
-                      color: selectedNumbers.includes(number + 1)
+                    color: selectedNumbers.includes(number + 1)
                       ? "aquamarine"
                       : "",
                     border: selectedNumbers.includes(number + 1)
                       ? "2px solid #2c75ff"
+                      : "",
+                    boxShadow: selectedNumbers.includes(number + 1)
+                      ? "inset -1px 2px 6px aquamarine"
+                      : "",
+                    textShadow: selectedNumbers.includes(number + 1)
+                      ? " -1px 2px 2px #333333"
                       : "",
                   }}
                 >
@@ -429,10 +433,14 @@ const LotoSystem = () => {
             </div>
           </div>
         </div>
-        <button className={styles.btntirage} onClick={drawNumbers} disabled={isDraw}>
+        <button
+          className={styles.btntirage}
+          onClick={drawNumbers}
+          disabled={isDraw}
+        >
           Tirage
         </button>
-        <div className={styles['tirage-container']}>
+        <div className={styles["tirage-container"]}>
           <h3 className={styles.resulttitle}>Résultat du tirage :</h3>
           <div className={styles.resulttirage}>
             {drawnNumbers.map((number, index) => (

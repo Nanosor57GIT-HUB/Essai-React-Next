@@ -1,0 +1,203 @@
+/* styles/chronometer.module.css */
+
+.pagecompteur {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: 70vh;
+  border: 3px solid aquamarine;
+}
+
+.chronometerBg {
+  position: absolute;
+  top: -117px; 
+  width: 362px;
+  height: auto;
+    margin-top: 30px;
+    filter: drop-shadow(6px 0px 6px #333333) saturate(50%);
+}
+
+.logoPortfolioName {
+  position: absolute;
+  top: 40px;
+  width: 100px;
+  height: auto;
+  /* filter: contrast(5%); */
+  filter: drop-shadow(2px 0px 1px #333333) saturate(20%);
+}
+
+.clock-container {
+  position: relative;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 300px;
+  height: 300px;
+  margin-top: 30px;
+  border-radius: 50%;
+  background-color: aquamarine;
+  opacity: 0.7;
+  border: 1px solid #333333;
+  box-shadow: inset 1px 1px 15px 10px #666666;
+}
+
+.clock-face {
+  position: relative;
+     display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+}
+
+
+
+.number {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0px 1px 1px #333333;
+  font-family: Arial, sans-serif;
+}
+
+.centercercle {
+position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #d17c26;
+  border-radius: 50%;
+  background-color: #666666;
+  box-shadow:1px 1px 3px #333333, inset 1px 1px 3px aquamarine;
+  z-index: 30;
+}
+
+.second-hand {
+  width: 2px;
+  height: 125px;
+  background-color: #666666;
+  border-radius: 25px;
+  z-index: 20;
+}
+
+.minute-hand {
+  position: absolute;
+  width: 3px;
+  height: 115px;
+  background-color: #d17c26;
+  border-radius: 25px;
+  z-index: 20;
+}
+
+/* heures */
+.containerheures {
+  position: absolute;
+  top: 85px;
+  right: 50px;
+}
+
+.hour-circle {
+  position: relative;
+  width: 65px;
+  height: 65px;
+   border-radius: 50%;
+   background-color: rgba(153, 205, 50, 0.149); 
+  box-shadow: inset 1px 1px 3px #333333;
+  border: 1px solid #2c75ff;
+}
+
+.centercercleheures {
+  position: absolute;
+  top: 46%;
+  left: 47%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #333333;
+  box-shadow: inset 1px 1px 2px aquamarine;
+  z-index: 10;
+}
+
+.hour-hand {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 1px;
+  height: 20px;
+  background-color: #333333;
+  border-radius: 25px;
+}
+
+.block-button {
+  position: absolute;
+  top: -65px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 375px;
+  height: 100px;
+  padding: 20px;
+  z-index: 10;
+}
+
+.btn-btnPress {
+  width: 45px;
+  height: 25px;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.btn-btnPress:nth-child(1) {
+  transform: translateY(35px) rotate(-45deg); 
+  line-height: 105px;
+}
+
+.btn-btnPress:nth-child(2) {
+  transform: translateY(-15px); 
+  line-height: 85px;
+}
+
+.btn-btnPress:nth-child(3) {
+  transform: translateY(35px) rotate(45deg);
+  line-height: 105px;
+}
+
+.robot5 {
+  width: 200px;
+  height: auto;
+  padding: 10px 5px 20px;
+  border-radius: 7px;
+  box-shadow: 1px 1px 3px aquamarine;
+  filter: drop-shadow(4px 4px 4px #333333) saturate(20%);border: 1px solid #2c75ff;
+}
+
+.elapsed-time {
+  position: absolute;
+  top: 60%;
+  right: 32%;
+  width: 100px;
+  height: 30px;
+  font-size: 24px;
+  font-weight: bold;
+   padding: 0 5px;
+   background-color: #999999;
+  border: 1px solid #333333;
+  border-radius: 7px;
+  box-shadow: inset 1px 1px 3px #333333;
+  text-shadow: -1px -1px 1px aquamarine;
+  z-index: 10;
+  
+}
+
+/* .timeElapsed {
+  width: 170px;
+  height: 30px;
+  border: 1px solid blue;
+  border-radius: 7px;
+} */

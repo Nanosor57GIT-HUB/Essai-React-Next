@@ -8,20 +8,20 @@ body {
   overflow: hidden;
 }
 
-.scrollpages {
+/* .scrollpages {
   width: 100%;
   height: 85vh;
   overflow-y: auto;
-}
+} */
 
-::-webkit-scrollbar {
-  width: 15px; 
-  background-color: yellowgreen;
+::-webkit-scrollbar {  
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #b36920; 
+  background-color: #b36920;
   border: 1px solid aquamarine;
+  box-shadow: inset 1px 1px 2px #333333;
   border-radius: 8px;
 }
 
@@ -41,8 +41,6 @@ body {
   scrollbar-color: #2c75ff #b36920; /* couleur de la poignée et du track */
 }
 /* ****** */
-
-
 
 /************** coin congratulations *******************/
 /* .coin-container {
@@ -74,8 +72,6 @@ body {
 } */
 /******************************************************/
 
-
-
 /*    ?????????? a vérifier si existe ?????????????   */
 /* @media screen and (max-width: 1250px) {
   .dollar {
@@ -86,9 +82,8 @@ body {
 } */
 /******************************************************/
 
-
 /* footer */
-.footer {
+/* .footer {
   position: relative;
   display: flex;
   align-items: center;
@@ -101,4 +96,6 @@ body {
 .titlefooter {
   font-size: 24px;
   color: yellowgreen;
-}
+} */
+
+

@@ -7,7 +7,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-height: 70vh;
+  min-height: 75vh;
+  border: 3px solid aquamarine;
 }
 
 .desciptionProject {
@@ -37,8 +38,8 @@
 }
 
 .blockTextDescriptionProject > p {
-  min-width: 350px;
-  max-width: 30%;
+  min-width: 240px;
+  width: 30%; 
   height: 105PX;
  padding: 0 10px;
   margin: 20px 0;
@@ -46,10 +47,6 @@
   hyphens: auto;
   overflow-x: hidden;
 }
-
-/* .scroller {
-  overflow-y: scroll;
-} */
 
 .titleDescription {
   color: #2c75ff;
@@ -72,19 +69,21 @@
 }
 
 .btnplayer {
-  width: 100px;
-  height: 30px;
-  line-height: 17px;
   padding: 5px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 17px;
+  color: aquamarine;
   margin-top: 30px;
-  background-color: yellowgreen;
-  border: 2px solid #333333;
-  border-radius: 7px;
-  box-shadow: 1px 2px 2px #333333;
+  background-color: #2c75ff;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px #333333, inset 1px 1px 3px aquamarine;
   cursor: pointer;
   z-index: 2000;
+}
+
+.btnplayer:hover {
+  box-shadow: inset 1px 1px 3px #666666;
+  text-shadow:  2px 2px 3px #333333;
 }
 
 .errorplayer {
@@ -92,14 +91,7 @@
   color: red;
 }
 
-.btnplayer:hover {
-  background-color: #1fa92f;
-  box-shadow: none;
-  /* box-shadow:
-    inset 1px 1px 1px black,
-    inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-    inset -1px -1px 5px rgb(128, 255, 212, 0.5); */
-}
+
 
 .btnplayer-fade-out {
   animation-delay: 1s;
@@ -160,5 +152,15 @@
   position: absolute;
   top: 10%;
   font-size: 360px;
+  opacity: 0.5;
 z-index: 10000;
+}
+
+@media screen and (max-width: 950px) {
+  .blockTextDescriptionProject > p{
+  width: 100%;
+  }
+  .blockTextDescriptionProject {
+margin-bottom: 100px;
+  }
 }

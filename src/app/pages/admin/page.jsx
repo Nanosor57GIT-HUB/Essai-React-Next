@@ -1,5 +1,6 @@
 "use client"
 
+import styles from "@/app/styles/admin.module.css"
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -15,60 +16,59 @@ import { useRouter } from 'next/navigation';
 
 const Admin = () => {
   const router = useRouter();
-  console.log("router const:", router);
   const [username, setUsername] = useState('');
-  console.log("usestate name:", username);
   const [password, setPassword] = useState('');
-  console.log("usestate pwd:", password);
   const [error, setError] = useState('');
-console.log("usstate err:", error);
+
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('loggedIn');
-    console.log("useeffect isloggedin:", isLoggedIn);
     if (isLoggedIn) {
-      console.log("if in useeffect loggedin:", isLoggedIn);
-      router.push('/admin/dashboard');
+      router.push('/pages/dashboard');
     }
   }, [router]);
 
+  const handleClick = () => {
+    setError("");
+  };
 
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Fonction handleLogin appelée !");
+    setError("");
     if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
-      console.log(process.env.ADMIN_USERNAME);
-      console.log(password === process.env.ADMIN_PASSWORD);
-      console.log("username dans if:", username);
    localStorage.setItem('loggedIn', 'true');
-      console.log("setitem loggedin:", localStorage); // Vérifiez ici si 'loggedIn' a été défini
-      router.push('/admin/dashboard');
+      router.push('/pages/dashboard');
     } else {
       setError("Nom d'utilisateur ou mot de passe incorrect.");
     }
   };
 
+
   return (
-    <main className="mainpages">
-      <h1>Page d&#39;administration</h1>
-      <form onSubmit={handleLogin}>
+    <div className={styles.adminPages}>
+      <h1 className={styles.titlePageAdmin}>Connection administrateur</h1>
+      <form className={styles.formAdminConnect} onSubmit={handleLogin}>
         <div>
-          <label>
+          <label className={styles.labelAdminConnect}>
             Nom d&#39;utilisateur:
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input className={styles.inputAdmin} type="text" value={username} onChange={(e) => setUsername(e.target.value)} onClick={handleClick} />
           </label>
         </div>
         <div>
-          <label>
+          <label className={styles.labelAdminConnect}>
             Mot de passe:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className={styles.inputAdmin} type="password" value={password} onChange={(e) => setPassword(e.target.value)} onClick={handleClick} />
           </label>
         </div>
-        <button type="submit">Se connecter</button>
-        {error && <p>{error}</p>}
+        <div className={styles.btnContainer}>
+        <button className={styles.btnAdmin} type="submit">Se connecter</button>
+        </div>
+        <div className={styles.errorAdmin}>
+        {error && <p className={styles.errorMessageAdmin}>{error}</p>}
+        </div>
       </form>
-    </main>
+    </div>
   );
 };
 

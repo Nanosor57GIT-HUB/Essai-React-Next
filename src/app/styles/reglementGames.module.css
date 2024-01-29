@@ -1,7 +1,6 @@
 /* styles/reglementGames.module.css */
 
-
-.pageReglement {
+/* .pageReglement {
     width: 100%;
     min-height: 70vh;
     background-color: yellowgreen;
@@ -14,37 +13,37 @@
     justify-content: space-evenly;
     width: 100%;
     min-height: 70vh;
-  }
-  .titleReglement {
+  } */
+/* .titleReglement {
     font-size: 48px;
     color: #333333;
     text-shadow: 0px 0px 2px #2c75ff;
-  }
-  .blockTextReglement {
+  } */
+/* .blockTextReglement {
     margin: 70px;
     width: 90%;
     height: auto;
     color: #333333;
     text-shadow: 0px 0px 2px #2c75ff;
-  }
-  .titleGameReglement {
-    font-size: 24px;
+  } */
+/* .titleGameReglement {
+    font-size: 26px;
     font-weight: bold;
     color: #2c75ff;
-   text-shadow: 0px 0px 1px #333333;
-  }
-  #loto,
+   text-shadow: 0px 0px 1px aquamarine;
+  } */
+/* #loto,
   #threeShell {
     margin-top: 130px !important;
-  }
-  
-  .textReglement {
+  } */
+
+/* .textReglement {
     font-size: 20px;
   font-weight: bold;
   padding: 20px;
-  }
-  
-  .returnLinkAccueil {
+  } */
+
+/* .returnLinkAccueil {
     display: flex;
    align-items: center;
    justify-content: flex-end;
@@ -56,4 +55,50 @@
     font-size: 20px;
     text-decoration: none;
   margin-right: 100px;
-  }
+  } */
+
+.modalReglementGames {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+height: 69vh;
+  background-color: #333333;
+  z-index: 1000;
+}
+
+.titleGameReglement {
+  font-size: 26px;
+  font-weight: bold;
+  color: yellowgreen;
+  text-shadow: 0px 1px 1px aquamarine;
+}
+
+.blockTextReglement {
+  margin: 70px;
+  width: 90%;
+  max-height: calc( 70vh - 100px);/* Ajustez en fonction de vos marges et autres éléments internes */ 
+  overflow-y: auto;
+}
+
+.textReglement {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c75ff;
+  text-shadow: 0px 1px 1px aquamarine;
+  padding: 20px;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  overflow-x: hidden;
+  /* word-spacing: 1px; */
+}
+
+.btnReglementGames {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+}

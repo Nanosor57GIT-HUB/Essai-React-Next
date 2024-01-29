@@ -2,6 +2,7 @@
 
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState } from "react";
+import ModaleReglementGames from "../modaleReglementGames";
 import styles from "@/app/styles/threeshellgame.module.css"
 import { Montserratfont } from "@/app/styles/style.font";
 import Coin from "./coinWin";
@@ -12,6 +13,8 @@ import Link from "next/link";
 
 const Bonneteau = () => {
   const { theme } = useTheme();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   // Les données des gobelets.
   const gobelets = [
@@ -351,7 +354,7 @@ const Bonneteau = () => {
             disabled={isButtonDisabled}
             style={{ opacity: isButtonDisabled ? 0.2 : 1 }}
           >
-            {isPlaying ? "Blend..." : "Play Game.."}
+            {isPlaying ? "Blend..." : "Play Game"}
           </button>
 
           {!isPlaying && !localStorage.getItem("bonneteauResult") && (
@@ -405,7 +408,7 @@ const Bonneteau = () => {
           et renvoie moi le formulaire. Après vérification, tu recevras un
           courriel indiquant les modalités de ton cadeau.
         </p>
-        <Link
+        {/* <Link
           href="/pages/reglement#threeShell"
           as="/pages/reglement#threeShell"
           passHref
@@ -413,8 +416,12 @@ const Bonneteau = () => {
           style={{
             color: theme.color4,
           }}
-        >Règlement du jeu 👉</Link>
+        >Règlement du jeu 👉</Link> */}
+         <button className={styles.linkReglement} onClick={() => setModalOpen(true)}  style={{
+            color: theme.color4,
+          }}>Règlement du jeu 👉</button>
       </div>
+      <ModaleReglementGames isOpen={modalOpen} onClose={() => setModalOpen(false)} gameType="bonneteau" />
       <FormBonneteau show={showModal} onClose={closeModal} />
     </div>
     </div>

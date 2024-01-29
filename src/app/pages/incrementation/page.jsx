@@ -58,7 +58,8 @@ const Like = () => {
         style={{
           background: theme.background,
         }}
-      >
+      > 
+      <p className={styles.ok}>OK</p>
         <h1
         className={`${styles.titleincrement} ${Interfont.className}`}
           style={{
@@ -67,6 +68,7 @@ const Like = () => {
         >
           Vous êtes sur la page d&#39;incrémentation
         </h1>
+       
         <Image
           priority={true}
           as="image"

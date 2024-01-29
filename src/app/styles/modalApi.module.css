@@ -1,0 +1,69 @@
+/* styles/modalApi.module.css */
+
+.modalApi {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+    transform: translate(-50%, -50%);
+    background-color: #333333a5;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 20;
+  }
+  
+  .blockContentApi {
+    position: relative;
+    width: 70%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+    border-radius: 25px;
+   
+  }
+  
+  .contentModalApi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%; 
+  }
+  
+  .modalApi h2 {
+    width: 80%;
+    height: 60px;
+    text-align: center;
+   margin: 50px 0 0;
+  }
+  
+  .contentParagrapheApi {
+    width: 95%;
+    height: 70%;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    overflow: auto;
+  }
+  
+  .modalApi p {
+    font-size: 18px;
+    padding: 20px 0;
+  }
+  
+  .closeModalApi {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: yellowgreen;
+    text-shadow: 1px 1px 1px #333333;
+    cursor: pointer;
+  }
+  

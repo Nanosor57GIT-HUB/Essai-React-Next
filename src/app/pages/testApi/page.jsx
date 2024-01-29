@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "@/app/styles/testapi.module.css"
 import { useTheme } from "@/app/context/themecontext";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { Interfont } from "@/app/styles/style.font";
+import { Montserratfont } from "@/app/styles/style.font";
 import Image from "next/image";
+import Link from "next/link";
+import ModalStockExchange from "@/app/components/modalStockExchange";
 
 const TestApi = () => {
   const { theme } = useTheme();
@@ -13,6 +15,9 @@ const TestApi = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const TestApi = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://dumbstockapi.com/stock?countries=CA,US&ticker_search=AA" 
+          "https://dumbstockapi.com/stock?countries=CA,US&ticker_search=BB" 
         );
         setData(response.data);
         setLoading(false);
@@ -40,55 +45,88 @@ const TestApi = () => {
     };
   }, []);
 
-  return (
-   
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Changement aléatoire de l'index de la carte à mettre en surbrillance
+      setHighlightedIndex(Math.floor(Math.random() * data.length));
+    }, 800); // Change toutes les 0.3 secondes
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [data]);
+
+  useEffect(() => {
+    // Réinitialiser l'index de la carte après chaque intervalle
+    const timeoutId = setTimeout(() => {
+      setHighlightedIndex(null);
+    }, 800);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [highlightedIndex]);
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+    setShowModal(true); 
+  };
+
+
+  return ( 
       <div
         className={styles.pageapi}
         style={{
           background: theme.background,
         }}
       > 
-        <h1 className={`${styles.titleapi} ${Interfont.className}`} style={{
-          color: theme.color,
-        }}>
-          Mise en place d&#x27;API avec axios
-        </h1>
-        <div className={styles.robot4container} style={{ display: loading || error ? 'none' : 'block' }}>
-          <Image
+        <Link
+          href="/pages/oval"
+          as="/pages/oval"
+          passHref
+          className={styles.version1}
+          prefetch={false}
+        >   
+        V2
+        </Link>
+        <div className={styles.headerImageApi} style={{ display: loading || error ? 'none' : 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Image
             priority={true}
             as="image"
-            src="/images/robots/robot4.webp" 
-            alt="robot4"
-            className={styles.robot4}
-            width={1229}
-            height={1260}
+            src="/images/stock-Exchange.png" 
+            alt="stockExchange_image"
+            className={styles.exchange} 
+            width={716}
+            height={323}
           />
         </div> 
-        <div>
+        <div className={styles.containerApi}>
         {loading ? (
             <p className={styles.chargementencours}>Chargement en cours ...</p>
           ) : error ? (
             <p className={styles.erreurchargement}>{error}</p>
           ) : (
             <ul className={styles.ulapi} >
-              {data &&
-                data.map((item, index) => (
+              {data && 
+                data.map((card, index) => (
                   <li
-                    className={styles.liapi}
+                  className={`${styles.liapi} ${Montserratfont.className} ${index === highlightedIndex ? styles.highlightedCard : ''}`}
                     style={{
                       background: theme.background2,
                     }}
-                    key={item.ticker + '_' + index}
+                    key={card.ticker + '_' + index}
+                    onClick={() => handleCardClick(card)}
                   >
-                  {item.name}
-                   
+                  {card.name}                 
                   </li>
                 ))}
             </ul>
           )}
         </div>
+        {selectedCard && showModal && (
+         <ModalStockExchange selectedCard={selectedCard} onClose={() => setShowModal(false)}  />
+        )} 
       </div>
-   
   );
 };
 

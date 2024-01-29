@@ -44,7 +44,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          as="/"
+          //as="/"
           passHref
           className={`${styles.link} ${currentRoute === "/" ? styles.active : ""}`}
           style={{
@@ -56,17 +56,17 @@ export default function Header() {
           Accueil
         </Link>
         <Link
-          href="/pages/cv"
-          as="/pages/cv"
+          href="/pages/searchbar"
+          as="/pages/searchbar"
           passHref
-          className={`${styles.link} ${currentRoute === "/pages/cv" ? styles.active : ""}`}
+          className={`${styles.link} ${currentRoute === "/pages/searchbar" ? styles.active : ""}`}
           style={{
             color: theme.color4,
           }}
           onClick={closeMenuBurger}
           prefetch={false}
         >
-         CV
+            SearchBar
         </Link>
         <Link
           href="/pages/incrementation"
@@ -85,42 +85,41 @@ export default function Header() {
           href="/pages/testApi"
           as="/pages/testApi"
           passHref
-          className={`${styles.link} ${currentRoute === "/pages/testApi" ? styles.active : ""}`}
+          className={`${styles.link}  ${currentRoute.startsWith("/pages/testApi") || currentRoute.startsWith("/pages/oval") ? styles.active : ""}`}
           style={{
             color: theme.color4,
           }}
           onClick={closeMenuBurger}
           prefetch={false}
         >
-            Api
-        </Link>
-
+            Exchange
+        </Link> 
         <Link
-          href="/pages/compteur"
-          as="/pages/compteur"
+          href="/pages/timer"
+          as="/pages/timer"
           passHref
-          className={`${styles.link} ${currentRoute === "/pages/compteur" ? styles.active : ""}`}
+          className={`${styles.link} ${currentRoute === "/pages/timer" ? styles.active : ""}`}
           style={{
             color: theme.color4,
           }}
           onClick={closeMenuBurger}
           prefetch={false}
         >
-            Compteur
+            Chronomètre
         </Link>
         <DropdownMenu/>
         <Link
-          href="/pages/searchbar"
-          as="/pages/searchbar"
+          href="/pages/cv"
+          as="/pages/cv"
           passHref
-          className={`${styles.link} ${currentRoute === "/pages/searchbar" ? styles.active : ""}`}
+          className={`${styles.link} ${currentRoute === "/pages/cv" ? styles.active : ""}`}
           style={{
             color: theme.color4,
           }}
           onClick={closeMenuBurger}
           prefetch={false}
         >
-            SearchBar
+         CV
         </Link>
         <Link
           href="/pages/contact"
@@ -135,6 +134,7 @@ export default function Header() {
         >
             Contact
         </Link>
+       
       </nav>
       <button
         className={styles.btnswitch}

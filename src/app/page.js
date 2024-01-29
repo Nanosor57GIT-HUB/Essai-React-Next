@@ -4,6 +4,7 @@ import styles from "@/app/styles/accueil.module.css"
 import { useTheme } from "./context/themecontext";
 import AccueilDescriptionProject from "./components/accueilDescriptionProject";
 import Audioplayer from "./components/audioplayer";
+import Head from "next/head";
 
 // https://www.youtube.com/watch?v=843nec-IvW0    (nextjs full course 7h by dave gray)
 
@@ -16,6 +17,10 @@ export default function Home() {
 
 
   return (
+    <div>
+    <Head>
+      <title>Accueil</title>
+    </Head>
   
       <div
         className={styles.pageaccueil}
@@ -28,6 +33,6 @@ export default function Home() {
         <AccueilDescriptionProject />
         <Audioplayer />
       </div>
-    
+    </div>
   );
 }

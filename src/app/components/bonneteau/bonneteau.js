@@ -1,7 +1,8 @@
 "use client";
 
-import { useTheme } from "@/app/context/themecontext";
+
 import React, { useEffect, useState } from "react";
+import { useTheme } from "@/app/context/themecontext";
 import { Montserratfont } from "@/app/styles/style.font";
 import Coin from "./coinWin";
 import CoinsExtraWin from "./coinExtraWin";

@@ -1,0 +1,100 @@
+/* styles/dashboard.module.css */
+
+.pageDashboard {
+  width: 100%;
+  min-height: 70vh;
+  border: 2px solid aquamarine;
+  background-color: yellowgreen;
+}
+
+.headPage {
+  display: flex;
+  width: 100%;
+  height: 160px;
+}
+
+.titleDashboard {
+  position: absolute;
+  top: 25vh;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.btnDeconnectDashboard {
+  position: absolute;
+  top: 17vh;
+  right: 15px;
+  width: auto;
+  height: 30px;
+  padding: 5px;
+  font-size: 18px;
+  color: aquamarine;
+  border: 1px solid #666666;
+  background-color: #2c75ff;
+  box-shadow: 1px 1px 3px #333333, inset 1px 1px 3px aquamarine;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btnDeconnectDashboard:hover {
+  box-shadow: inset 1px 1px 3px #666666;
+  text-shadow:  1px 1px 3px #333333;
+}
+
+.wrapperTable {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.blockTable {
+  border-collapse: collapse;
+  width: 90%;
+  height: auto;
+  /* border: 2px solid #333333; */
+  box-shadow:  2px 2px 5px #666666;
+}
+
+.blockTable th,
+.blockTable td {
+  text-align: center;
+  border-style: ridge;
+  box-shadow:  inset 2px 2px 5px aquamarine;
+}
+
+.blockTable th {
+  font-size: 20px;
+  padding: 10px 5px;
+  color: #d17c26;
+  text-shadow: 1px 1px 0px aquamarine;
+  letter-spacing: 1px;
+  background-color: #333333;
+}
+
+.blockTable td {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+  color: #333333;
+  text-shadow: 0px 1px 0px aquamarine;
+}
+
+.even-row td {
+  background-color: #d17c2683; /* Lignes paires */
+}
+
+.odd-row td {
+  background-color: #d17c2646; /* Lignes impaires */
+}
+
+.blockTable tr {
+  cursor: pointer;
+}
+.blockTable tbody tr:hover {
+  position: relative;
+  background-color: aquamarine;
+  box-shadow: inset 0 0 10px 10px #2c75ff; 
+  opacity: 0.9;
+}

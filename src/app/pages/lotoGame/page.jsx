@@ -2,7 +2,7 @@
 
 import styles from "@/app/styles/lotogame.module.css"
 import { useTheme } from "@/app/context/themecontext";
-import LotoSystem from "@/app/components/lotoSystem/lotosystem2";
+import LotoSystem from "@/app/components/lotoSystem/lotosystem";
 
 
 
