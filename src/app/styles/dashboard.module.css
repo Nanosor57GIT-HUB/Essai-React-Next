@@ -2,7 +2,7 @@
 
 .pageDashboard {
   width: 100%;
-  min-height: 70vh;
+  min-height: 75vh;
   border: 2px solid aquamarine;
   background-color: yellowgreen;
 }

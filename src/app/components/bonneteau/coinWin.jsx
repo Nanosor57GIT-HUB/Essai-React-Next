@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import styles from "@/app/styles/threeshellgame.module.css"
+import styles from "@/app/styles/threeshellgame.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -34,14 +34,12 @@ const Coin = ({ index, rowIndex }) => {
   }, []);
 
   const randomLeft = Math.random() * 100; // Entre 0% et 100% (pour la largeur du scale)
-  const randomTop = Math.random() * -80 -50; // Entre -60px et -30px (pour éviter un chevauchement significatif)
+  const randomTop = Math.random() * -80 - 50; // Entre -60px et -30px (pour éviter un chevauchement significatif)
   const animationDuration = 2 + Math.random() * 3;
-
-
 
   const coinStyle = {
     left: `${randomLeft}vw`,
-    top: `${randomTop}px`,  
+    top: `${randomTop}px`,
   };
 
   const coinSize = calculateCoinSize(windowWidth, rowIndex, index);
@@ -50,18 +48,17 @@ const Coin = ({ index, rowIndex }) => {
     width: `${coinSize}px`,
     height: `${coinSize}px`,
   };
-  
 
   const animationStyle = {
     animation: `fall ${animationDuration}s linear infinite`,
   };
 
   return (
-    <div  className={styles.coin} style={{ ...coinStyle, ...animationStyle }}>
+    <div className={styles.coin} style={{ ...coinStyle, ...animationStyle }}>
       <Image
-      priority={true}
-      as="image"
-        src="/images/coin/Dollar-Gold.png" 
+        priority={true}
+        as="image"
+        src="/images/coin/Dollar-Gold.png"
         alt="Coin"
         className={styles.coin}
         width={coinSize}

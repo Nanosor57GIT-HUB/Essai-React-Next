@@ -28,26 +28,33 @@
   justify-content: space-between;
   flex-wrap: wrap;
   max-width: 900px;
-  height: auto;
-  margin: 0 20px;
+  height: 48px;
+  line-height: 43px;
+  margin: 0 10px;
+  padding: 0 10px;
   border: 2px solid #2c75ff;
   border-radius: 25px;
 }
 
 .menu-toggle {
   display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .rotatecaretmenu {
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
   transform: rotate(180deg);
 }
 
 .menu-toggle,
 .link {
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
-  margin: 10px;
+  margin: 0 10px;
   color: #d17c26;
   cursor: pointer;
 }
@@ -98,8 +105,8 @@
 .dropdown-menu {
   position: absolute;
   top: 99%;
-  left: 54%;
-  width: 150px;
+  left: 66%;
+  width: 120px;
   text-align: center;
   background-color: #333;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -121,12 +128,10 @@
   height: 50px;
 }
 
-/* .linkmenu {
-    font-size: 20px;
-  } */
-
 /****switch color btn****/
 .btnswitch {
+  width: 80px;
+  height: auto;
   font-size: 12px;
   padding: 5px;
   background-color: #333333;
@@ -139,11 +144,42 @@
   margin-right: 10px;
   cursor: pointer;
 }
-
 /****end switch*****/
-@media (max-width: 1080px) {
+
+@media screen and (max-width: 1115px) {
+  .header {
+    flex-direction: row;
+    justify-content: none;
+    align-items: none;
+  }
+  .logoPortfolio {
+    position: absolute;
+    left: 20px;
+  }
+  .navlinks {
+    position: absolute;
+    right: 10px;
+    /* display: flex;
+  align-items: center; */
+    width: 80%;
+    height: 45px;
+    line-height: 40px;
+    padding: 0 10px;
+    margin-top: -30px;
+  }
+  .menu-toggle,
+  .link {
+    font-size: 16px;
+    margin: 0;
+  }
+  .caretdropdown {
+    width: 20px;
+    height: 20px;
+  }
   .btnswitch {
-    display: none;
+    position: absolute;
+    top: 65%;
+    right: 20px;
   }
 }
 @media screen and (max-width: 800px) {
@@ -151,12 +187,14 @@
     justify-content: space-between;
     padding: 0 30px;
   }
-
+  .btnswitch {
+    display: none;
+  }
   .burger-menu {
-    position: relative;
+    position: absolute;
+    right: 30px;
     display: block;
   }
-
   .menu-container {
     position: relative;
   }

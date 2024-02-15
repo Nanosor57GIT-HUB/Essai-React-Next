@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    min-height: 70vh;
+    min-height: 75vh;
   }
 
   .loto-container {
@@ -17,7 +17,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    min-height: 70vh;
+   height: 75vh;
     overflow: hidden;
     border: 3px solid white;
   }

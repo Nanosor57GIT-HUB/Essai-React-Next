@@ -77,14 +77,14 @@ const LotoSystem = () => {
         setSelectedNumbers(updatedNumbers);
         updateMessage("lotoMessage1", "");
       } else if (selectedNumbers.length < 6) {
-          // Sélectionne le numéro si moins de 6 numéros sont déjà sélectionnés
+        // Sélectionne le numéro si moins de 6 numéros sont déjà sélectionnés
         setSelectedNumbers([...selectedNumbers, number]);
         updateMessage("lotoMessage1", "");
       }
     }
   };
 
- // Effet secondaire pour gérer le message de gagné avec la correspondance
+  // Effet secondaire pour gérer le message de gagné avec la correspondance
   useEffect(() => {
     // Initialisation du compteur de numéros correspondants
     let matchingNumbers = 0;
@@ -118,7 +118,7 @@ const LotoSystem = () => {
     }
   }, [dailyDrawCount, drawnNumbers, selectedNumbers, isDraw, updateMessage]);
 
-// Effet secondaire pour ajuster la largeur du conteneur de la grille en fonction des numéros sélectionnés
+  // Effet secondaire pour ajuster la largeur du conteneur de la grille en fonction des numéros sélectionnés
   useEffect(() => {
     if (containerRef.current) {
       const containerWidth = 34 + selectedNumbers.length * 34;
@@ -127,7 +127,7 @@ const LotoSystem = () => {
   }, [selectedNumbers]);
 
   /////////////////////////////////  Gestion countdown /////////////////////////
-// Fonction pour calculer le temps écoulé depuis le dernier tirage
+  // Fonction pour calculer le temps écoulé depuis le dernier tirage
   const calculateTimeElapsed = useCallback(() => {
     const savedLastDrawTime = parseInt(localStorage.getItem("lastDrawTime"));
     const currentTime = Date.now();
@@ -170,7 +170,7 @@ const LotoSystem = () => {
   }, []);
   ////////////////////////////// End gestion countdown ////////////////
 
-// Fonction de tirage des numéros
+  // Fonction de tirage des numéros
   const drawNumbers = () => {
     if (!isDraw && dailyDrawCount <= 3) {
       // Vérification du nombre de numéros sélectionnés
@@ -209,7 +209,7 @@ const LotoSystem = () => {
     }
   };
 
- // Effet secondaire pour gérer le message "revenir plus tard"
+  // Effet secondaire pour gérer le message "revenir plus tard"
   useEffect(() => {
     if (dailyDrawCount === 3 && result < 3) {
       setIsDraw(true);
@@ -302,9 +302,16 @@ const LotoSystem = () => {
             value ? styles["fade-in-message"] : ""
           }`}
         >
-          {value && <div className={styles["loto-message"]}   style={{
-          background: theme.background2,
-        }}>{value}</div>}
+          {value && (
+            <div
+              className={styles["loto-message"]}
+              style={{
+                background: theme.background2,
+              }}
+            >
+              {value}
+            </div>
+          )}
         </div>
       ))}
       <Image
@@ -355,19 +362,21 @@ const LotoSystem = () => {
           <span className={styles["result-correspondance"]}>{result}</span>
           bon numéro(s)
         </h3>
-        {/* <Link
-          href="/pages/reglement#loto"
-          as="/pages/reglement#loto"
-          passHref
+        <button
           className={styles.linkReglement}
+          onClick={() => setModalOpen(true)}
+          style={{
+            color: theme.color4,
+          }}
         >
           Règlement du jeu 👉
-        </Link> */}
-        <button className={styles.linkReglement} onClick={() => setModalOpen(true)}  style={{
-            color: theme.color4,
-          }}>Règlement du jeu 👉</button>
+        </button>
       </div>
-      <ModaleReglementGames isOpen={modalOpen} onClose={() => setModalOpen(false)} gameType="loto" />
+      <ModaleReglementGames
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        gameType="LotoReglement"
+      />
       <div className={styles["wrapper-lotogame"]}>
         <div>
           <h3>Votre sélection :</h3>

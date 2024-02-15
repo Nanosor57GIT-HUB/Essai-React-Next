@@ -3,7 +3,7 @@
       {
         "data": [
           { "id": 1,
-            "title": "CV ...",
+            "title": "SEARCHBAR ...",
             "text": "ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae nulla tristique, semper nisi nec, varius dui. Nulla facilisi. Maecenas augue mauris, interdum vel felis at, consectetur imperdiet odio. Cras eu tincidunt augue. Duis tempus, elit quis maximus ultrices, turpis lorem elementum leo, quis congue arcu enim sit amet nibh. Nullam non posuere nibh. Mauris finibus neque ut tellus sodales euismod. Aliquam aliquet consectetur leo non blandit. Morbi ultricies elit nisl, sed tristique nibh lobortis sed."
           },
           {
@@ -13,22 +13,22 @@
           },
           {
             "id": 3,
-            "title": "API ...",
+            "title": "EXCHANGE ...",
             "text": "ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae nulla tristique, semper nisi nec, varius dui. Nulla facilisi. Maecenas augue mauris, interdum vel felis at, consectetur imperdiet odio. Cras eu tincidunt augue."
           },
           {
             "id": 4,
+            "title": "CHRONOMETER ...",
+            "text": "ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae nulla tristique, semper nisi nec, varius dui. Nulla facilisi. Maecenas augue mauris, interdum vel felis at, consectetur imperdiet odio. Cras eu tincidunt augue."
+          },
+          {
+            "id": 5,
             "title": "GAMES ...",
             "text": "Mise en place de 2 jeux basés sur des algorythmes différents. Three-Shell game 333, un bonnetaeau constitué d'une boule et de trois gobelets avec un mélange et le choix du gobelet pour savoir si vous avez gagné, ou pas. 1 tirage, 3 chance de gagner un lot et 1 chance sur 3 de gagner le gros lot. Vous perdez, vous ne pouvez plus jouer. Vous gagnez, remplissez le formulaire qui me sera retransmis pour un contact ultèrieur avec le gagnant, après vérification. LotoSystem 6/28, un loto traditionnel ....."
           },
           {
-            "id": 5,
-            "title": "SEARCHBAR ...",
-            "text": "leo eu imperdiet facilisis, lectus nulla efficitur sapien, eu imperdiet turpis nibh ac tellus. Suspendisse convallis non orci vitae tempor. Nam dignissim, sapien eget luctus ornare, odio lorem ullamcorper turpis, et tempus risus nisi ac metus. Aenean tempor vitae dui vel dictum. Sed sollicitudin nulla sapien, nec interdum urna euismod nec. Vestibulum in convallis enim. Donec cursus aliquet vehicula."
-          },
-          {
             "id": 6,
-            "title": "COMPTEUR ...",
+            "title": "CV ...",
             "text": "leo eu imperdiet facilisis, lectus nulla efficitur sapien, eu imperdiet turpis nibh ac tellus. Suspendisse convallis non orci vitae tempor. Nam dignissim, sapien eget luctus ornare, odio lorem ullamcorper turpis, et tempus risus nisi ac metus. Aenean tempor vitae dui vel dictum. Sed sollicitudin nulla sapien, nec interdum urna euismod nec. Vestibulum in convallis enim. Donec cursus aliquet vehicula."
           },
           {

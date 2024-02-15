@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import styles from "@/app/styles/accueil.module.css"
+import styles from "@/app/styles/accueil.module.css";
 import Image from "next/image";
 
 const Audioplayer = () => {
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState(false);
   const [currentAudioTitle, setCurrentAudioTitle] = useState("");
@@ -35,7 +34,7 @@ const Audioplayer = () => {
         if (sourceElement) {
           const audioTitle = sourceElement.getAttribute("title");
           setCurrentAudioTitle(audioTitle);
-        //  console.log(audioTitle);
+          //  console.log(audioTitle);
         }
       }
     }
@@ -66,10 +65,10 @@ const Audioplayer = () => {
           <audio
             controls
             className={`${styles.nativeaudioplayer} ${
-              isPlaying || musicEnded ? "" : styles['player-fade-out']
+              isPlaying || musicEnded ? "" : styles["player-fade-out"]
             }`}
             onError={() => handleAudioError()}
-          //  onLoadedMetadata={() => handleAudioLoaded()}
+            //  onLoadedMetadata={() => handleAudioLoaded()}
             onEnded={() => handleAudioEnded()}
             ref={audioRef}
           >
@@ -80,22 +79,31 @@ const Audioplayer = () => {
             />
           </audio>
           <button
-            className={`${styles.btnplayer} ${musicEnded ? styles['btnplayer-fade-out'] : ""}`}
+            className={`${styles.btnplayer} ${
+              musicEnded ? styles["btnplayer-fade-out"] : ""
+            }`}
             onClick={() => handleButtonClick()}
             ref={playButtonRef}
           >
             {isPlaying ? "Pause ⏸️" : "Play ▶️"}
           </button>
           <div className={styles.robotcontainer}>
-        <Image priority={true} src="/images/robots/robot1.webp" alt="robot1"  width={658} height={747} className={styles.robot1}
-       />
-      
-          <div className={styles.containermarquee}>
-            {currentAudioTitle && isPlaying && (
-              <marquee behavior="scroll" direction="left">
-                <h2>{currentAudioTitle}</h2>
-              </marquee>
-            )} 
+            <Image
+              priority={true}
+              as="image"
+              src="/images/robots/robot1.webp"
+              alt="robot1"
+              width={658}
+              height={747}
+              className={styles.robot1}
+            />
+
+            <div className={styles.containermarquee}>
+              {currentAudioTitle && isPlaying && (
+                <marquee behavior="scroll" direction="left">
+                  <h2>{currentAudioTitle}</h2>
+                </marquee>
+              )}
             </div>
           </div>
         </div>
@@ -105,4 +113,3 @@ const Audioplayer = () => {
 };
 
 export default Audioplayer;
-

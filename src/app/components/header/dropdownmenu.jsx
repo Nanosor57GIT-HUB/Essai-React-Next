@@ -6,16 +6,20 @@ import { useTheme } from "@/app/context/themecontext";
 import { useHeader } from "@/app/context/headercontext";
 import { usePathname } from "next/navigation";
 
-
 const DropdownMenu = () => {
-    const { theme } = useTheme();
-    const { isMenuOpen, closeMenuBurger, closeDropdownMenu, toggleMenu, dropdownMenuRef } = useHeader()
-    
-    const currentRoute = usePathname();
+  const { theme } = useTheme();
+  const {
+    isMenuOpen,
+    closeMenuBurger,
+    closeDropdownMenu,
+    toggleMenu,
+    dropdownMenuRef,
+  } = useHeader();
+
+  const currentRoute = usePathname();
 
   const [isMenuToggleActive, setIsMenuToggleActive] = useState(false);
 
-  
   const handleLinkClick = useCallback(() => {
     closeMenuBurger();
     closeDropdownMenu();
@@ -24,91 +28,115 @@ const DropdownMenu = () => {
 
   useEffect(() => {
     // Désactive le bouton de menu-toggle lorsque la route change, à moins que ce ne soit un lien du menu
-    if (!currentRoute.startsWith("/pages/lotoGame") && !currentRoute.startsWith("/page/threeShellGame")) {
+    if (
+      !currentRoute.startsWith("/pages/lotoGame") &&
+      !currentRoute.startsWith("/page/threeShellGame")
+    ) {
       setIsMenuToggleActive(false);
     }
   }, [currentRoute]);
 
+  // Mettre à jour setIsMenuToggleActive en fonction de l'état du menu ou du lien actif
+  useEffect(() => {
+    setIsMenuToggleActive(
+      isMenuOpen ||
+        currentRoute.startsWith("/pages/lotoGame") ||
+        currentRoute.startsWith("/pages/threeShellGame")
+    );
+  }, [isMenuOpen, currentRoute]);
 
-// Mettre à jour setIsMenuToggleActive en fonction de l'état du menu ou du lien actif
-useEffect(() => {
-  setIsMenuToggleActive(isMenuOpen || currentRoute.startsWith("/pages/lotoGame") || currentRoute.startsWith("/pages/threeShellGame"));
-}, [isMenuOpen, currentRoute]);
+  // Menu du déroulant
+  const dropdownMenu = useMemo(() => {
+    return isMenuOpen ? (
+      <div
+        className={`${styles["dropdown-menu"]} ${styles["show"]}`}
+        style={{
+          border: theme.border2,
+          borderTop: theme.borderTop,
+        }}
+      >
+        <ul>
+          <li className={styles.limenu}>
+            <Link
+              rel="preload"
+              href="/pages/lotoGame"
+              as="/pages/lotoGame"
+              className={`${styles.link} ${
+                currentRoute === "/pages/lotoGame" ? styles.active : ""
+              }`}
+              style={{
+                color: theme.color4,
+                transition: "color 0.5s",
+              }}
+              onClick={() => {
+                handleLinkClick();
+              }}
+              // prefetch={false}
+            >
+              Loto
+            </Link>
+          </li>
+          <li className={styles.limenu}>
+            <Link
+              rel="preload"
+              href="/pages/threeShellGame"
+              as="/pages/threeShellGame"
+              className={`${styles.link} ${
+                currentRoute === "/pages/threeShellGame" ? styles.active : ""
+              }`}
+              style={{
+                color: theme.color4,
+                transition: "color 0.5s",
+              }}
+              onClick={() => {
+                handleLinkClick();
+              }}
+              //  prefetch={false}
+            >
+              Bonneteau
+            </Link>
+          </li>
+        </ul>
+      </div>
+    ) : null;
+  }, [
+    isMenuOpen,
+    currentRoute,
+    theme.color4,
+    theme.border2,
+    theme.borderTop,
+    handleLinkClick,
+  ]);
 
+  const menuToggleClass = isMenuToggleActive ? styles.active : "";
 
-    // Menu du déroulant
-    const dropdownMenu = useMemo(() => {
-      return isMenuOpen ? (
-        <div
-          className={`${styles['dropdown-menu']} ${styles['show']}`}
+  return (
+    <div className={styles["menu-container"]} ref={dropdownMenuRef}>
+      <div
+        className={`${styles["menu-toggle"]} ${menuToggleClass}`}
+        onClick={toggleMenu}
+        style={{ color: theme.color4 }}
+      >
+        Games
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+          className={`${styles.caretdropdown} ${
+            isMenuOpen ? styles.rotatecaretmenu : ""
+          }`}
+          fill="yellowgreen"
+          width={25}
+          height={25}
           style={{
-            border: theme.border2,
-            borderTop: theme.borderTop,
+            fill: theme.fill2,
           }}
         >
-          <ul>
-            <li className={styles.limenu}>
-              <Link
-                href="/pages/lotoGame"
-              //  as="/pages/lotoGame"
-                className={`${styles.link} ${currentRoute === "/pages/lotoGame" ? styles.active : ""}`}
-                style={{
-                  color: theme.color4,
-                  transition: "color 0.5s",
-                }}
-                onClick={() => {
-                  handleLinkClick()                
-                }}
-                prefetch={false}
-              >             
-                  Loto
-              </Link>
-            </li>
-            <li className={styles.limenu}>
-              <Link
-                href="/pages/threeShellGame"
-              //  as="/pages/threeShellGame"
-                className={`${styles.link} ${currentRoute === "/pages/threeShellGame" ? styles.active : ""}`}
-                style={{
-                  color: theme.color4,
-                  transition: "color 0.5s",
-                }}
-                onClick={() => {
-                  handleLinkClick()               
-                }}
-                prefetch={false}
-              >            
-                  Bonneteau         
-              </Link>
-            </li>
-          </ul>
-        </div>
-      ) : null;
-    }, [isMenuOpen, currentRoute, theme.color4, theme.border2, theme.borderTop, handleLinkClick]);   
-  
-    const menuToggleClass = isMenuToggleActive ? styles.active : "";
-
-    return (
-      <div className={styles["menu-container"]} ref={dropdownMenuRef} >
-        <div className={`${styles["menu-toggle"]} ${menuToggleClass}`}  onClick={toggleMenu} style={{ color: theme.color4 }}>
-          Games
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"
-            className={`${styles.caretdropdown} ${isMenuOpen ? styles.rotatecaretmenu : ""}`}
-            fill="yellowgreen"
-            width={25}
-            height={25}
-            style={{
-              fill: theme.fill2,
-            }}
-          >
-            <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-          </svg>
-        </div>
-        {isMenuOpen && dropdownMenu}
+          <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+        </svg>
       </div>
-    );
-  };
+      {isMenuOpen && dropdownMenu}
+    </div>
+  );
+};
 
-  export default DropdownMenu;
+export default DropdownMenu;

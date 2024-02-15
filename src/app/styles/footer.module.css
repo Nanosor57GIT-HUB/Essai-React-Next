@@ -11,6 +11,8 @@
     z-index: 1049;
   }
   .titlefooter {
+ position: relative;
     font-size: 24px;
     color: yellowgreen;
+    text-shadow: 1px 1px 1px #666666;
   } 

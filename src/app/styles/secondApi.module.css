@@ -1,0 +1,275 @@
+/* styles/oval.module.css */
+
+.pageoval {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75vh;
+  background-color: yellowgreen;
+  border: 3px solid aquamarine;
+}
+
+.version2 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #666666;
+  color: aquamarine;
+  box-shadow: inset 1px 1px 3px aquamarine, 1px 1px 3px #333333;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 19;
+}
+
+.oval-carousel {
+  position: absolute;
+  width: 100%;
+  height: 75vh;
+}
+
+.containerCard {
+  position: absolute;
+  top: 47%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0 10px;
+  color: aquamarine;
+  border-radius: 7px;
+  background-color: #333333;
+  border: 2px solid #d07e26;
+  box-shadow: 1px 2px 2px #333333, inset 1px 1px 5px aquamarine;
+  text-shadow: 1px 1px 3px #666666;
+  transition: transform 0.8s ease-in-out;
+}
+
+.card.selected {
+  background-color: #666666;
+  text-shadow: 1px 1px 3px #333333;
+  cursor: pointer;
+}
+
+.centered {
+  animation-duration: 0.8s;
+  animation-delay: 0.8s;
+  animation-name: cardCentered;
+  animation-fill-mode: forwards;
+  z-index: 1;
+}
+@keyframes cardCentered {
+  0% {
+    /* width: 200px;
+    height: 50px; */
+    font-size: 15px;
+  }
+  100% {
+    transform: translateY(-15px);
+    width: 300px;
+    height: 150px;
+    font-size: 17px;
+  }
+}
+
+.containerImages {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  margin-top: 154px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.exchange {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: auto;
+  filter: drop-shadow(0.03rem 0.03rem 0.03rem #333333);
+  opacity: 0;
+}
+
+.animationCentered {
+  animation-name: firstPositionExchange;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes firstPositionExchange {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) translateX(-300%);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(0px) translateX(-300%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
+}
+
+.animationExchangeCentered {
+  animation-name: secondPositionExchange;
+  animation-duration: 1.6s;
+  animation-fill-mode: forwards;
+}
+@keyframes secondPositionExchange {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translateY(-150px) translateX(-50%);
+  }
+  50% {
+    width: 100px;
+    height: auto;
+    opacity: 0;
+    transform: translateY(-150px) translateX(-50%);
+  }
+  100% {
+    width: 300px;
+    height: auto;
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
+}
+
+.robot10 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: rotate(-1.3deg);
+  width: 280px;
+  height: auto;
+  filter: drop-shadow(2px 2px 3px #333333) saturate(20%);
+  opacity: 0;
+}
+
+.animation1Robot10 {
+  animation-name: animateRobot10;
+  animation-duration: 0.8s;
+  animation-delay: 0.8s;
+  animation-fill-mode: forwards;
+}
+@keyframes animateRobot10 {
+  10% {
+    opacity: 0;
+    transform: translateY(20%)  translateX(-50%);
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    width: 220px;
+    height: auto;
+    opacity: 1;
+    transform: translateY(80%) translateX(-50%) rotate(-1.3deg);
+  }
+}
+
+.insciteclick {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: 30%;
+  margin-bottom: 65px;
+  z-index: 30;
+}
+
+.arrowDown {
+  width: 0;
+  height: 0;
+  filter: drop-shadow(1px 1px 1px #333333);
+  animation-name: moveArrow;
+  animation-duration: 0.7s;
+  animation-delay: 0.5s;
+  animation-iteration-count: 7;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+  opacity: 0;
+}
+@keyframes moveArrow {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  100% {
+    width: 25px;
+    height: 25px;
+    transform: translateY(14px);
+    opacity: 1;
+  }
+}
+
+.pointillésDescription {
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #2c75ff;
+  margin-left: 8px;
+  text-shadow: 1px 1px 1px aquamarine;
+  pointer-events: none;
+}
+
+.arrowCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 50px;
+}
+
+.btnArrow {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(1px 1px 2px #333333);
+  opacity: 0;
+  animation-name: transitionArrow;
+  animation-duration: 0.5s;
+  /* animation-delay: 1s; */
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+@keyframes transitionArrow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}

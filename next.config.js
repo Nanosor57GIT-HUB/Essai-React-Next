@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    env: {
-        ADMIN_USERNAME: process.env.ADMIN_USERNAME,
-        ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
-      },
+  env: {
+    NEXT_PUBLIC_ADMIN_USERNAME: process.env.NEXT_PUBLIC_ADMIN_USERNAME,
+    NEXT_PUBLIC_ADMIN_PASSWORD: process.env.NEXT_PUBLIC_ADMIN_PASSWORD,
+  },
 }    
 module.exports = nextConfig

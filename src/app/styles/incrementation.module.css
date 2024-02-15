@@ -3,7 +3,7 @@
 .pageincrement {
     position: relative;
     width: 100%;
-    min-height: 70vh;
+    min-height: 75vh;
     border: 3px solid aquamarine;
   }
   
@@ -51,8 +51,7 @@
    padding: 10px;
     background-color: #2c75ff;
     border: 1px solid #666666;
-    box-shadow: 1px 1px 3px #333333, inset 1px 1px 3px aquamarine;
-    
+    box-shadow: 1px 1px 3px #333333, inset 1px 1px 3px aquamarine;  
     border-radius: 10px;
     cursor: pointer;
   }

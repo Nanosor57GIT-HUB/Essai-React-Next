@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -112,7 +112,7 @@ function ContactForm() {
       {/* <p className={styles.ok}>OK</p> */}
       {!submitted ? (
         <form ref={formRef} className={styles.contactForm} onSubmit={sendEmail}>
-          <p className={styles.astérisqueSpécifie}>
+          <p className={styles.asterisqueSpecifie}>
             (<span className={styles.specifieIndicator}>*</span>) Obligatoire.
           </p>
           <div>
@@ -167,11 +167,12 @@ function ContactForm() {
               </span>{" "}
               :
               <textarea
-                id={styles.message}
-                className={styles.message}
+                id="message"
+                className={`${styles.message}`}
                 name="message"
-                rows="7"
+                rows="6"
                 placeholder="Laissez moi un message ..."
+             
                 value={formData.message}
                 onChange={handleChange}
                 maxLength={350}
@@ -192,18 +193,23 @@ function ContactForm() {
         <div className={styles.containerConfirmModal}>
           {displayModal && (
             <div className={styles.modalConfirmContact}>
-              <Link href="/" className={styles.closeConfirmContact}>
+              <Link
+                rel="preload"
+                href="/"
+                className={styles.closeConfirmContact}
+                as="/"
+              >
                 X
               </Link>
               <Image
-          priority={true}
-          as="image"
-          src="/images/logo/logoPortfolioName.png"
-          alt="MyPortfolioInline logoName"
-          className={styles.logoName}
-          width={1608}
-          height={908}
-        />
+                priority={true}
+                as="image"
+                src="/images/logo/logoPortfolioName.png"
+                alt="MyPortfolioInline logoName"
+                className={styles.logoName}
+                width={1608}
+                height={908}
+              />
               <h2 className={styles.textConfirmContact}>
                 Merci <span style={{ color: "#2c75ff" }}>{submittedName}</span>{" "}
                 pour votre message !

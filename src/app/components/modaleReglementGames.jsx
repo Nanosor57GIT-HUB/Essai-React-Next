@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-//import styles from "@/app/styles/lotogame.module.css"
+import { metadata } from "../layout";
 import styles from "@/app/styles/reglementGames.module.css";
 
 const ModaleReglementGames = ({ isOpen, onClose, gameType }) => {
+  
   const renderGameRules = () => {
     switch (gameType) {
-      case "loto":
+      case "LotoReglement":
         return (
-            
           <div className={styles.blockTextReglement}>
             <h2 className={styles.titleGameReglement}>Règlement Loto</h2>
             <p className={styles.textReglement}>
@@ -75,10 +75,12 @@ const ModaleReglementGames = ({ isOpen, onClose, gameType }) => {
             </p>
           </div>
         );
-      case "bonneteau":
+      case "BonneteauReglement":
         return (
           <div className={styles.blockTextReglement}>
-            <h2 className={styles.titleGameReglement}>Règlement Three-shell game</h2>
+            <h2 className={styles.titleGameReglement}>
+              Règlement Three-shell game
+            </h2>
             <p className={styles.textReglement}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in
               orci et urna ultricies hendrerit et a felis. Vivamus ut facilisis
@@ -142,13 +144,19 @@ const ModaleReglementGames = ({ isOpen, onClose, gameType }) => {
 
   return (
     isOpen && (
+    <div>
+       <title>{metadata[gameType].title}</title>
+          <meta
+            name="description"
+            content={metadata[gameType].description}
+          />
       <div className={styles.modalReglementGames}>
-        {/* <div className={styles['modalReglement-content']}> */}
         {renderGameRules()}
         <button className={styles.btnReglementGames} onClick={onClose}>
           Retour au jeu
         </button>
         {/* </div> */}
+      </div>
       </div>
     )
   );

@@ -3,7 +3,7 @@
 import { useTheme } from "@/app/context/themecontext";
 import React, { useEffect, useState } from "react";
 import ModaleReglementGames from "../modaleReglementGames";
-import styles from "@/app/styles/threeshellgame.module.css"
+import styles from "@/app/styles/threeshellgame.module.css";
 import { Montserratfont } from "@/app/styles/style.font";
 import Coin from "./coinWin";
 import CoinsExtraWin from "./coinExtraWin";
@@ -105,9 +105,9 @@ const Bonneteau = () => {
       // Interval entre chaque itération pour le mélange.
       const animationInterval = setInterval(() => {
         const newOrder = shuffleArray(arrayOrder);
-      //  console.log(arrayOrder);
+        //  console.log(arrayOrder);
         setArrayOrder(newOrder);
-      //  console.log(newOrder);
+        //  console.log(newOrder);
       }, 1000);
       return () => {
         clearInterval(animationInterval);
@@ -139,7 +139,7 @@ const Bonneteau = () => {
   // Fonction pour démarrer un nouveau jeu.
   function startGame() {
     if (!isPlaying) {
-       setGobeletClicked(false)
+      setGobeletClicked(false);
       setIsButtonDisabled(true);
       setPositionGobelets(true);
       setWinnerId(2);
@@ -150,10 +150,10 @@ const Bonneteau = () => {
         setPositionGobelets(false);
         setGobeletFinale(true);
         setIsPlaying(true);
-        setGobeletClicked(false)
+        setGobeletClicked(false);
 
         // Après un certain délai, durée du mélange.
-        setTimeout(() => {     
+        setTimeout(() => {
           setIsPlaying(false);
         }, 10000); // Durée de 3 secondes pour le mélange.
       }, 2000); // 2 secondes de délai avant le mélange.
@@ -168,10 +168,10 @@ const Bonneteau = () => {
       // Délai avant de déclencher le mélange.
       setTimeout(() => {
         setIsPlaying(true);
-        setGobeletClicked(false)
+        setGobeletClicked(false);
 
         // Après un certain délai, durée du mélange.
-        setTimeout(() => {        
+        setTimeout(() => {
           setIsPlaying(false);
         }, 10000); // Durée de 3 secondes pour le mélange.
       }, 500); // 1/2 secondes de délai avant le mélange.
@@ -272,7 +272,6 @@ const Bonneteau = () => {
     }
   }, [isPlaying]);
 
-
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setShowModal(true);
@@ -286,144 +285,169 @@ const Bonneteau = () => {
     setShowModal(false);
   };
 
-   return ( 
-   <div className={styles['wrapper-bonneteau']}> 
-    <div className={styles.blockbonneteau}>
-      <div className={styles.emptybonneteau}></div>
-      <div className={styles.containerbonneteau}>
-        <h2 className={`${styles.titlegamebonneteau} ${Montserratfont.className}`}>
-          Three-Shell Game 333
-        </h2>
-        <p className={styles.alertevictory} style={{ color: theme.color2 }}>
-          {victoryMessage}
-        </p>
-        <div className={styles['block-button']}>
-          <div className={styles['gobelet-container']}>
-            {arrayOrder.map((index, idx) => (
-            <div
-            key={gobelets[index].id}
-            className={`${styles.gobelets} ${styles['gobelet-' + gobelets[index].position]}
+  return (
+    <div className={styles["wrapper-bonneteau"]}>
+      <div className={styles.blockbonneteau}>
+        <div className={styles.emptybonneteau}></div>
+        <div className={styles.containerbonneteau}>
+          <h2
+            className={`${styles.titlegamebonneteau} ${Montserratfont.className}`}
+          >
+            Three-Shell Game 333
+          </h2>
+          <p className={styles.alertevictory} style={{ color: theme.color2 }}>
+            {victoryMessage}
+          </p>
+          <div className={styles["block-button"]}>
+            <div className={styles["gobelet-container"]}>
+              {arrayOrder.map((index, idx) => (
+                <div
+                  key={gobelets[index].id}
+                  className={`${styles.gobelets} ${
+                    styles["gobelet-" + gobelets[index].position]
+                  }
             ${
-              positionGobelets ? `${styles['gobelets' + (index + 1) + '-animated']}` : ""
+              positionGobelets
+                ? `${styles["gobelets" + (index + 1) + "-animated"]}`
+                : ""
             }            
-             ${gobeletFinale ? `${styles['gobelets' + (idx + 1) + '-positionFinale']}` : ""} 
-            ${gobeletClicked[index] ? `${styles['gobelet-clicked' + (idx + 1)]}` : ""}`}
-            onClick={() => {
-              handleGobeletClick(index, gobelets[index].gobeletId);
-            }}
-          >
-                {gobelets[index].imageSrc && (
-                  <Image
-                  priority={true}
-                  as="image"
-                  src={gobelets[index].imageSrc}
-                  className={`${styles.gobelets} ${styles['gobelet-' + gobelets[index].position]}`}
-                  alt="Gobelets du jeu"
-                  width={1200}
-                  height={1500}
-                />
-                
-                )}
-                <span className={styles.testgobelet}>{gobelets[index].position}</span>
-              </div>
-            ))}
+             ${
+               gobeletFinale
+                 ? `${styles["gobelets" + (idx + 1) + "-positionFinale"]}`
+                 : ""
+             } 
+            ${
+              gobeletClicked[index]
+                ? `${styles["gobelet-clicked" + (idx + 1)]}`
+                : ""
+            }`}
+                  onClick={() => {
+                    handleGobeletClick(index, gobelets[index].gobeletId);
+                  }}
+                >
+                  {gobelets[index].imageSrc && (
+                    <Image
+                      priority={true}
+                      as="image"
+                      src={gobelets[index].imageSrc}
+                      className={`${styles.gobelets} ${
+                        styles["gobelet-" + gobelets[index].position]
+                      }`}
+                      alt="Gobelets du jeu"
+                      width={1200}
+                      height={1500}
+                    />
+                  )}
+                  <span className={styles.testgobelet}>
+                    {gobelets[index].position}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles["button-container"]}>
+              {arrayOrder.map((index) => (
+                <button
+                  key={buttonsData[index].id}
+                  className={styles["winner-button"]}
+                >
+                  {buttonsData[index].imageSrc && (
+                    <Image
+                      priority={true}
+                      as="image"
+                      src={buttonsData[index].imageSrc}
+                      alt="Boule gagnante"
+                      width={1200}
+                      height={1500}
+                      className={styles["winner-button-img"]}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className={styles['button-container']}>
-            {arrayOrder.map((index) => (
-              <button key={buttonsData[index].id} className={styles['winner-button']}>
-                {buttonsData[index].imageSrc && (
-                  <Image
-                    src={buttonsData[index].imageSrc}
-                    as="image"
-                    alt="Boule gagnante"
-                    width={1200}
-                    height={1500}
-                    className={styles['winner-button-img']}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.containerbtnplaygame}>
-          <button
-            className={styles.btngame2}
-            onClick={nextRound}
-            disabled={isButtonDisabled}
-            style={{ opacity: isButtonDisabled ? 0.2 : 1 }}
-          >
-            {isPlaying ? "Blend..." : "Play Game"}
-          </button>
-
-          {!isPlaying && !localStorage.getItem("bonneteauResult") && (
+          <div className={styles.containerbtnplaygame}>
             <button
-              onClick={startGame}
+              className={styles.btngame2}
+              onClick={nextRound}
               disabled={isButtonDisabled}
-              className={styles.btngame}
-              style={{ display: initGame ? "none" : "block" }}
+              style={{ opacity: isButtonDisabled ? 0.2 : 1 }}
             >
               {isPlaying ? "Blend..." : "Play Game"}
             </button>
-          )}
+
+            {!isPlaying && !localStorage.getItem("bonneteauResult") && (
+              <button
+                onClick={startGame}
+                disabled={isButtonDisabled}
+                className={styles.btngame}
+                style={{ display: initGame ? "none" : "block" }}
+              >
+                {isPlaying ? "Blend..." : "Play Game"}
+              </button>
+            )}
+          </div>
+          <div
+            className={`${styles["coin-container"]} ${
+              displayFallingCoins ? "visible" : ""
+            }`}
+          >
+            {displayFallingCoins &&
+              // 5 rangées de pièces
+              Array.from({ length: 5 }).map((_, rowIndex) => (
+                <div key={rowIndex} className="coin-row">
+                  {/* contiennent chacune 8 pièces */}
+                  {Array.from({ length: 8 }).map((_, index) => (
+                    <div key={`coin-${rowIndex}-${index}`} className="coin">
+                      {animationType === "extrawin" ? (
+                        // Initialisation avec personnalisation du comportement en fonction de la position de la pièce dans la grille.
+                        <CoinsExtraWin
+                          key={`coin-${rowIndex}-${index}`}
+                          index={index}
+                          rowIndex={rowIndex}
+                        />
+                      ) : (
+                        <Coin
+                          key={`coin-${rowIndex}-${index}`}
+                          index={index}
+                          rowIndex={rowIndex}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+          </div>
         </div>
-        <div
-          className={`${styles['coin-container']} ${displayFallingCoins ? "visible" : ""}`}
-        >
-          {displayFallingCoins &&
-            // 5 rangées de pièces
-            Array.from({ length: 5 }).map((_, rowIndex) => (
-              <div key={rowIndex} className='coin-row'>
-                {/* contiennent chacune 8 pièces */}
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <div key={`coin-${rowIndex}-${index}`} className='coin'>
-                    {animationType === "extrawin" ? (
-                      // Initialisation avec personnalisation du comportement en fonction de la position de la pièce dans la grille.
-                      <CoinsExtraWin
-                        key={`coin-${rowIndex}-${index}`}
-                        index={index}
-                        rowIndex={rowIndex}
-                      />
-                    ) : (
-                      <Coin
-                        key={`coin-${rowIndex}-${index}`}
-                        index={index}
-                        rowIndex={rowIndex}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
+        <div className={styles.blockdescriptiongame}>
+          <h3>C&#39;est ton jour de chance !!!</h3>
+          <h4>T&#39;es en veine, joue et tente de gagner un cadeau.</h4>
+          <p>
+            - Click sur le bouton &quot;Play game&quot;. Après le mélange,
+            trouve la boule en cliquant sur un gobelet. Tu as 3 chances de
+            gagner un lot. Mais ce n&#39;est pas tout. 1 gagnant sur trois aura
+            la change d&#39;avoir un gros lot. Joue, Gagne et renvoie moi le
+            formulaire. Après vérification, tu recevras un courriel indiquant
+            les modalités de ton cadeau.
+          </p>
+          <button
+            className={styles.linkReglement}
+            onClick={() => setModalOpen(true)}
+            style={{
+              color: theme.color4,
+            }}
+          >
+            Règlement du jeu 👉
+          </button>
         </div>
+        <ModaleReglementGames
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          gameType="BonneteauReglement"
+        />
+        <FormBonneteau show={showModal} onClose={closeModal} />
       </div>
-      <div className={styles.blockdescriptiongame}>
-        <h3>C&#39;est ton jour de chance !!!</h3>
-        <h4>T&#39;es en veine, joue et tente de gagner un cadeau.</h4>
-        <p>
-          - Click sur le bouton &quot;Play game&quot;. Après le mélange, trouve
-          la boule en cliquant sur un gobelet.  Tu as
-          3 chances de gagner un lot. Mais ce n&#39;est pas tout. 1 gagnant sur trois aura la change d&#39;avoir un gros lot. Joue, Gagne
-          et renvoie moi le formulaire. Après vérification, tu recevras un
-          courriel indiquant les modalités de ton cadeau.
-        </p>
-        {/* <Link
-          href="/pages/reglement#threeShell"
-          as="/pages/reglement#threeShell"
-          passHref
-          className={styles.linkReglement}
-          style={{
-            color: theme.color4,
-          }}
-        >Règlement du jeu 👉</Link> */}
-         <button className={styles.linkReglement} onClick={() => setModalOpen(true)}  style={{
-            color: theme.color4,
-          }}>Règlement du jeu 👉</button>
-      </div>
-      <ModaleReglementGames isOpen={modalOpen} onClose={() => setModalOpen(false)} gameType="bonneteau" />
-      <FormBonneteau show={showModal} onClose={closeModal} />
-    </div>
     </div>
   );
 };

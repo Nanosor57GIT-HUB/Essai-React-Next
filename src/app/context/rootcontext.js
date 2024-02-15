@@ -1,29 +1,26 @@
 // RootContext.js
-"use client"
+"use client";
 
-import React, { createContext, useContext } from 'react';
-import { ThemeProvider } from './themecontext';
-import { HeaderProvider } from './headercontext';
+import React, { createContext, useContext } from "react";
+import { ThemeProvider } from "./themecontext";
+import { HeaderProvider } from "./headercontext";
 
 const RootContext = createContext();
 
 export const RootProvider = ({ children }) => {
-
-   // Créez un objet contenant les fournisseurs de contexte
-   const contextValue = {
+  // Créez un objet contenant les fournisseurs de contexte
+  const contextValue = {
     ThemeProvider,
     HeaderProvider,
     // Ajoutez d'autres valeurs si nécessaire
   };
 
   return (
-    <RootContext.Provider value={contextValue} >
-      <ThemeProvider >
-        <HeaderProvider>
-    {children}
-    </HeaderProvider>
-    </ThemeProvider>
-  </RootContext.Provider>
+    <RootContext.Provider value={contextValue}>
+      <ThemeProvider>
+        <HeaderProvider>{children}</HeaderProvider>
+      </ThemeProvider>
+    </RootContext.Provider>
   );
 };
 

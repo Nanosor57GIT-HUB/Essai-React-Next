@@ -12,12 +12,18 @@
     border: 3px solid aquamarine;
   }
 
+  .pagecv::-webkit-scrollbar-thumb,
+.pagecv::-webkit-scrollbar-track {
+  border-radius: 0; 
+}
+
   .loadingCv {  
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    height: 74vh;
     background-color: #333333;
     font-size: 48px;
     font-weight: bold;
@@ -26,19 +32,28 @@
 
   .title {
     margin-top: 50px;
-    font-size: 48px;
+    font-size: 36px;
+    text-shadow: 1px 1px 3px #333333;
   }
+
   .robot2 {
-    margin-top: 120px;
+    margin-top: 90px;
     width: 150px;
     height: auto;
     filter: drop-shadow(2px 2px 1px #333333);
   }
 
+  .wrapper-content-cv {
+    width: 100%;
+    height: auto;
+    padding-bottom: 100px;
+  }
+
   .blocresumecv {
     width: 80%;
     height: auto;
-    padding: 50px;
+    margin-top: 50px;
+    padding: 30px;
   } 
   
   .containerTitleCv {
@@ -68,7 +83,6 @@
    @keyframes slideAndFade {
     0% {
       opacity: 0;
-      /* left: -200px; */
       transform: translateX(-200px);
     }
     60% {
@@ -88,26 +102,29 @@
   }
 
 
-  .ok {
+  /* .ok {
     position: absolute;
     top: 100px;
     font-size: 360px;
     opacity: 0.5;
   z-index: 10000;
-  }
+  } */
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 800px) {
     .blocresumecv {
       width: 100%;
      text-align: center;
-     border: 1px solid blue;
+     padding: 10px;
     }
     .titleCvText {
-     font-size: 24px;
+     font-size: 30px;
     }
     .robot7 {
       width: 50px;
       height: auto;
+    }
+    .textecv {
+      font-size: 18px;
     }
   }
 

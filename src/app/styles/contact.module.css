@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 70vh;
+  min-height: 75vh;
   border: 3px solid aquamarine;
 }
 
@@ -15,14 +15,14 @@
   align-items: center;
   justify-content: center;
 }
-.titlecontact {
+/* .titlecontact {
   position: absolute;
   color: aquamarine;
-}
+} */
 .tablettecontact {
   position: relative;
   transform: rotate(180deg);
-  width: 750px;
+  width: 700px;
   height: auto;
 }
 .bg-tablette {
@@ -33,9 +33,9 @@
 
 .robot9 {
   position: absolute;
-  bottom: 75px;
-  right: 25px;
-  max-width: 150px;
+  bottom: 70px;
+  right: 24px;
+  max-width: 140px;
   height: auto;
   filter: drop-shadow(2px 2px 1px #333333) brightness(0.8);
 }
@@ -45,8 +45,9 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 500px;
   height: 380px;
+  margin-top: 20px;
 }
 .labelFormContact {
   font-weight: bold;
@@ -81,10 +82,10 @@
   font-weight: bold;
 }
 
-.astérisqueSpécifie {
+.asterisqueSpecifie {
   position: absolute;
-  top: -5px;
-  right: 0;
+  top: -20px;
+  right: -20px;
    font-size: 16px;
   font-weight: bold;
 }
@@ -97,8 +98,8 @@ vertical-align: middle;
 
 
 .blockTextarea {
-  width: auto;
-  height: 52%;
+  width: 100%;
+  height: 45%;
 }
 .message {
   width: 92%;
@@ -108,9 +109,19 @@ vertical-align: middle;
   background-color: #999999;
   padding: 5px 10px;
   border: 1px solid #333333;
-  border-radius: 7px;
-  overflow: scrollY;
+  border-radius: 5px;
+  overflow-y: auto;
+  resize: none;
 }
+.message::-webkit-scrollbar-track {
+   border: none;
+}
+.message::-webkit-scrollbar-thumb,
+.message::-webkit-scrollbar-track {
+  border-radius: 3px;
+
+}
+
 #message::placeholder {
   font-size: 16px;
   font-weight: normal;
