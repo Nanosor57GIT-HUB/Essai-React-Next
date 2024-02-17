@@ -1,5 +1,5 @@
 // RootContext.js
-"use client";
+ "use client";
 
 import React, { createContext, useContext } from "react";
 import { ThemeProvider } from "./themecontext";

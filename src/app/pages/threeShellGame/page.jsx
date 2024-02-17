@@ -1,6 +1,6 @@
 "use client";
 
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import styles from "@/app/styles/threeshellgame.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import Image from "next/image";
@@ -12,8 +12,8 @@ const ThreeShell = () => {
   return (
 
     <div>
-       <title>{metadata.BonneteauGame.title}</title>
-     <meta name="description" content={metadata.BonneteauGame.description}  />
+       {/* <title>{metadata.BonneteauGame.title}</title>
+     <meta name="description" content={metadata.BonneteauGame.description}  /> */}
     <div
       className={styles.pagebonneteau}
       style={{

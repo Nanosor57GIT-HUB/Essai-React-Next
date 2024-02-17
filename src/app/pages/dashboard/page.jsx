@@ -2,7 +2,7 @@
 
 // pages/admin/dashboard.js
 import { useEffect } from "react";
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import styles from "@/app/styles/dashboard.module.css";
 import { useRouter } from "next/navigation";
 
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <div>
-        <title>{metadata.Dashboard.title}</title>
+        {/* <title>{metadata.Dashboard.title}</title> */}
     <div className={styles.pageDashboard}>
       <div className={styles.headPage}>
         <h1 className={styles.titleDashboard}>Dashboard Games</h1>

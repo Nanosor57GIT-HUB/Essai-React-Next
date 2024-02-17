@@ -3,7 +3,7 @@
 //import styles from "@/app/styles/searchbar.module.css"
 
 import React, { useEffect, useState } from "react";
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import styles from "@/app/styles/searchbar.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import Link from "next/link";
@@ -44,8 +44,8 @@ const SearchPage = () => {
   return (
 
     <div>
-       <title>{metadata.BarreDeRecherche.title}</title>
-     <meta name="description" content={metadata.BarreDeRecherche.description}  />
+       {/* <title>{metadata.BarreDeRecherche.title}</title>
+     <meta name="description" content={metadata.BarreDeRecherche.description}  /> */}
     <div
       className={styles.pagesearchbar}
       style={{

@@ -1,6 +1,6 @@
 "use client";
 
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import styles from "@/app/styles/incrementation.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import { useEffect, useState } from "react";
@@ -58,8 +58,8 @@ const Like = () => {
 
   return (
     <div>
-       <title>{metadata.Increment.title}</title>
-     <meta name="description" content={metadata.Increment.description}  />
+       {/* <title>{metadata.Increment.title}</title>
+     <meta name="description" content={metadata.Increment.description}  /> */}
     <div
       className={styles.pageincrement}
       style={{

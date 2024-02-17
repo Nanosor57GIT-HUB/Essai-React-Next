@@ -3,7 +3,8 @@
 //https://nextjs.org/docs/app/building-your-application/optimizing/fonts#using-multiple-fonts
 
 
-import { metadata } from "@/app/layout";
+
+import Head from "next/head";
 import styles from "@/app/styles/contact.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import ContactForm from "./contactForm";
@@ -16,10 +17,10 @@ const Contact = () => {
 
   return (
     <div>
-    
-     <title>{metadata.Contact.title}</title>
-     <meta name="description" content={metadata.Contact.description}  />
-     
+    <Head>
+     <title>Ma page de contact</title>
+     <meta name="description" content="description contact"  />
+     </Head>
     <div
       className={styles.pagecontact}
       style={{

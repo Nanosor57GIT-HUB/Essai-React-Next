@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { metadata } from "../layout";
+//import { metadata } from "../layout";
 import styles from "@/app/styles/reglementGames.module.css";
 
 const ModaleReglementGames = ({ isOpen, onClose, gameType }) => {
@@ -145,11 +145,11 @@ const ModaleReglementGames = ({ isOpen, onClose, gameType }) => {
   return (
     isOpen && (
     <div>
-       <title>{metadata[gameType].title}</title>
+       {/* <title>{metadata[gameType].title}</title>
           <meta
             name="description"
             content={metadata[gameType].description}
-          />
+          /> */}
       <div className={styles.modalReglementGames}>
         {renderGameRules()}
         <button className={styles.btnReglementGames} onClick={onClose}>

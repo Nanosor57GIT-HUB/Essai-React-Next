@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import axios from "axios";
 import { useTheme } from "@/app/context/themecontext";
 import styles from "@/app/styles/secondApi.module.css";
@@ -140,8 +140,8 @@ const CarouselApi = () => {
 
   return (
     <div>
-       <title>{metadata.ExchangeV2.title}</title>
-     <meta name="description" content={metadata.ExchangeV2.description}  />
+       {/* <title>{metadata.ExchangeV2.title}</title>
+     <meta name="description" content={metadata.ExchangeV2.description}  /> */}
     <div
       className={styles.pageoval}
       style={{

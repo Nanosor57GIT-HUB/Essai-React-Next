@@ -1,6 +1,6 @@
 "use client";
 
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import { useTheme } from "@/app/context/themecontext";
 import ContentCV from "@/app/components/contentCV";
 import styles from "@/app/styles/cv.module.css";
@@ -13,8 +13,8 @@ const CV = () => {
 
   return (
     <div>
-       <title>{metadata.Cv.title}</title>
-     <meta name="description" content={metadata.Cv.description}  />
+       {/* <title>{metadata.Cv.title}</title>
+     <meta name="description" content={metadata.Cv.description}  /> */}
     <div
       className={styles.pagecv}
       style={{

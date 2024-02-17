@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { metadata } from "@/app/layout";
+//import { metadata } from "@/app/layout";
 import styles from "@/app/styles/firstApi.module.css";
 import { useTheme } from "@/app/context/themecontext";
 import axios from "axios";
@@ -108,8 +108,8 @@ const FirstApi = () => {
 
   return (
     <div>
-      <title>{metadata.ExchangeV1.title}</title>
-     <meta name="description" content={metadata.ExchangeV1.description}  />
+      {/* <title>{metadata.ExchangeV1.title}</title>
+     <meta name="description" content={metadata.ExchangeV1.description}  /> */}
     <div
       className={styles.pageapi}
       style={{
